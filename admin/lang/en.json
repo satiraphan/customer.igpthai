@@ -1,0 +1,35 @@
+{
+	"auth" : {
+		"login" : "Log In", 
+		"username" : "Username",
+		"password" : "Password",
+		"dismiss" : "Dismiss",
+		"rememberme" : "Remember me",
+		"forgotpassword" : "Forgot password ?",
+		"msg" : {
+			"dialog_warning_title" : "Warning !",
+			"dialog_warning_message" : "Your username or password are wrong!",
+			"dialog_language_title" : "Please Select Language",
+			"dialog_logout_title" : "Are you sure to logout?",
+			"dialog_logout_message" : "Warning: You can improve your security further after logging out by closing this opened browser.",
+			"dialog_noaccess_title" : "Access Denied!",
+			"dialog_noaccess_body" : "Sorry! You have no permission to access this action!"
+		},
+		"profile" : "Profile",
+		"language" : "Language",
+		"setting" : "Settings",
+		"signout" : "Sign Out"
+	},
+	"global" : {
+		"add" : "Add", 
+		"edit" : "Edit",
+		"remove" : "Remove",
+		"dismiss" : "Dismiss",
+		"home" : "Home",
+		"search" : "Search",
+		"ok" : "OK",
+		"cancel" : "Cancel",
+		"confirm" : "Confirm",
+		"application" : "Application"
+	}
+}

@@ -1,0 +1,11 @@
+
+[REV 1.0]
+	[2018-02-20]
+		- Initial /config/system.json
+[REV 2.0]
+	[2020-10-15]
+		- Initial NebulaOS System
+	[2021-06-05]
+		- Add No Access System
+		
+		

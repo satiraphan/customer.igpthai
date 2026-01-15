@@ -1,0 +1,31 @@
+{
+	"main" : {
+		"account" : "Account",
+		"group" : "Group",
+		"user" : "User",
+		"add" : "Add",
+		"remove" : "Remove"
+	},
+	"account" : {
+		"dialog" : {
+			"add_header" : "Add Account",
+			"edit_header" : "Edit Account",
+			"name" : "Name",
+			"type" : "Type",
+			"parent" : "Organization"
+		}
+	},
+	"user" : {
+		"user" : "User",
+		"username" : "Username",
+		"phone" : "Phone",
+		"email" : "Email"
+	},
+	"group" : {
+		"name" : "Name",
+		"account" : "Account",
+		"created" : "Created",
+		"updated" : "Updated",
+		"action" : "Action"
+	}
+}

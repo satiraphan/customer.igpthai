@@ -1,0 +1,124 @@
+[
+	{
+		"appname" : "dashboard",
+		"name" : {
+			"en" : "Dashboard",
+			"th" : "หน้าแรก"
+		},
+		"icon_type" : "feather",
+		"icon" : "trello",
+		"path" : "apps/dashboard/index.php"
+	},{
+		"appname" : "page",
+		"name" : "Pages",
+		"icon" : "fas fa-pages",
+		"path" : "apps/page/index.php"
+	},{
+		"appname" : "menu",
+		"name" : "Menus",
+		"icon" : "fas fa-list",
+		"path" : "apps/menu/index.php"
+	},{
+		"appname" : "authentication",
+		"name" : "Authentication",
+		"icon" : "fas fa-plug",
+		"path" : "apps/authentication/index.php"
+	},{
+		"appname" : "schedule",
+		"name" : "Schedule",
+		"icon" : "fas fa-calendar",
+		"path" : "apps/schedule/index.php"
+	},{
+		"appname" : "sandbox",
+		"name" : "Sandbox",
+		"icon" : "fas fa-plug",
+		"path" : "apps/sandbox/index.php"
+	},{
+		"appname" : "concurent",
+		"name" : "Concurent",
+		"icon" : "fas fa-plug",
+		"path" : "apps/concurent/index.php"
+	},{
+		"appname" : "mainmenu",
+		"name" : "Main Menu",
+		"icon" : "far fa-home",
+		"submenu" : [
+			{
+				"appname" : "logger",
+				"name" : "Logger",
+				"icon" : "far fa-history",
+				"path" : "apps/logger/index.php"
+			},{
+				"appname" : "contact",
+				"name" : "Contact",
+				"icon_type" : "feather",
+				"icon" : "book",
+				"path" : "apps/contact/index.php"
+			},{
+				"appname" : "notify",
+				"name" : "Notification",
+				"icon_type" : "feather",
+				"icon" : "bell",
+				"path" : "apps/notify/index.php"
+			},{
+				"appname" : "customer",
+				"name" : "Customer",
+				"icon_type" : "feather",
+				"icon" : "settings",
+				"path" : "apps/customer/index.php"
+			}
+		]
+	},{
+		"appname" : "admin",
+		"icon_type" : "feather",
+		"icon" : "command",
+		"name" : "Administration",
+		"submenu" : [
+			{
+				"appname" : "setting",
+				"name" : "Setting",
+				"icon_type" : "feather",
+				"icon" : "settings",
+				"path" : "apps/setting/index.php"
+			},{
+				"appname" : "accctrl",
+				"name" : "Access Control",
+				"icon_type" : "feather",
+				"icon" : "users",
+				"path" : "apps/accctrl/index.php"
+			},{
+				"appname" : "database",
+				"name" : "Database",
+				"icon_type" : "feather",
+				"icon" : "database",
+				"path" : "apps/database/index.php"
+			},{
+				"appname" : "user",
+				"name" : {
+					"en" : "User",
+					"th" : "ผู้ใช้งาน"
+				},
+				"icon_type" : "feather",
+				"icon" : "users",
+				"path" : "apps/user/index.php"
+			}
+		]
+	},{
+		"appname" : "info",
+		"name" : "Infomation",
+		"icon_type" : "feather",
+		"icon" : "info",
+		"path" : "apps/info/index.php"
+	},{
+		"appname" : "zystem",
+		"name" : "System",
+		"icon_type" : "feather",
+		"icon" : "cpu",
+		"path" : "apps/zystem/index.php"
+	},{
+		"appname" : "category",
+		"name" : "หมวดหมู่สินค้า",
+		"icon" : "fa-solid fa-icons",
+		"path" : "apps/category/index.php"
+	}
+]

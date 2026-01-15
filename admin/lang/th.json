@@ -1,0 +1,35 @@
+{
+	"auth" : {
+		"login" : "Log In", 
+		"username" : "Username",
+		"password" : "Password",
+		"dismiss" : "Dismiss",
+		"rememberme" : "Remember me",
+		"forgotpassword" : "Forgot password ?",
+		"msg" : {
+			"dialog_warning_title" : "Warning !",
+			"dialog_warning_message" : "Your username or password are wrong!",
+			"dialog_language_title" : "เปลี่ยนภาษา",
+			"dialog_logout_title" : "ต้องการออกจากระบบ ?",
+			"dialog_logout_message" : "Warning: You can improve your security further after logging out by closing this opened browser.",
+			"dialog_noaccess_title" : "ไม่สามารถเข้าถึงได้!",
+			"dialog_noaccess_body" : "ขออภัย! ไม่ยังไม่ได้รับสิทธิ์ให้เข้าถึงการทำงานี้!"
+		},
+		"profile" : "ข้อมูลส่วนตัว",
+		"language" : "เปลี่ยนภาษา",
+		"setting" : "ตั่งค่าระบบ",
+		"signout" : "ออกจากระบบ"
+	},
+	"global" : {
+		"add" : "เพิ่ม", 
+		"edit" : "แก้ไข",
+		"remove" : "ลบ",
+		"dismiss" : "รับทราบ",
+		"home" : "หน้าแรก",
+		"search" : "ค้นหา",
+		"ok" : "ตกลง",
+		"cancel" : "ยกเลิก",
+		"confirm" : "ยืนยัน",
+		"application" : "แอปพลิเคชัน"
+	}
+}

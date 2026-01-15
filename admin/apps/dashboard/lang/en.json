@@ -1,0 +1,29 @@
+{
+	"main" : {
+		"appname" : "Dashboard",
+		"add" : "Add",
+		"edit" : "Edit",
+		"remove" : "Remove"
+	},
+	"view" : {
+		"uername" : "Username",
+		"avatar" : "Avatar",
+		"fullname" : "Fullname",
+		"group" : "Group",
+		"phone" : "Phone",
+		"email" : "Email",
+		"last_login" : "Last Login",
+		"action" : "Action"
+	},
+	"add" : {
+		"test" : "test",
+		"username" : {
+			"caption" : "Name",
+			"placeholder" : "Username"
+		},
+		"password" : {
+			"caption" : "Password",
+			"placeholder" : "Password"
+		}
+	}
+}

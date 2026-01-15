@@ -1,0 +1,28 @@
+{
+	"main" : {
+		"appname" : "แดชบอร์ด",
+		"add" : "เพิ่ม",
+		"edit" : "แก้ไข",
+		"remove" : "ลบ"
+	},
+	"view" : {
+		"username" : "ชื่อผู้ใช้งาน",
+		"avatar" : "รูปภาพ",
+		"fullname" : "ชื่อเต็ม",
+		"group" : "กลุ่มผู้ใช้",
+		"phone" : "โทร",
+		"email" : "อีเมลล์",
+		"last_login" : "เข้าสู่ระบบล่าสุด",
+		"action" : "ดำเนินการ"
+	},
+	"add" : {
+		"username" : {
+			"caption" : "ชื่อผู้ใช้งาน",
+			"placeholder" : "ชื่อผู้ใช้งาน"
+		},
+		"password" : {
+			"caption" : "รหัสผ่าน",
+			"placeholder" : "รหัสผ่าน"
+		}
+	}
+}

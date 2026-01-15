@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'Sarabun';
+    src: url(../font/Sarabun/Sarabun-Medium.ttf);
+	unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+body,
+.tooltip,
+.popover {
+	font-family: 'Sarabun',Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+
+.select2-container {
+	z-index: 2050;
+}
+
+.modal .modal-full{
+	max-width: 95%
+}
+
+.pointer{
+	cursor:pointer;
+}
+
+.arrow{
+	cursor:default;
+}
+
+
+.custom-control-label::after {
+	left: -1.5rem;
+}
+
+.custom-control-label::before {
+	left: -1.5rem;
+}
+
+div.dataTables_wrapper div.dataTables_filter input{
+	background-image: url(../img/magnify-icon.jpg);
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: right 5px center;
+}
