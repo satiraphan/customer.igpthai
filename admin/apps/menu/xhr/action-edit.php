@@ -11,23 +11,26 @@
 	$dbc->Connect();
 	$os = new oceanos($dbc);
 
-	if($dbc->HasRecord("os_users","name = '".$_POST['name']."' AND id !=".$_POST['id'])){
+	if($dbc->HasRecord("cms_menu","name = '".$_POST['name']."' AND id !=".$_POST['id'])){
 		echo json_encode(array(
 			'success'=>false,
 			'msg'=>'Menu Name is already exist.'
 		));
 	}else{
 		$data = array(
-			'name' => $_POST['name'],
-			'#updated' => 'NOW()',
+			"name" => $_POST['name'],
+			"#updated" => 'NOW()',
+			"#status" => isset($_POST['status'])?1:0,
+			"#page_id" => $_POST['page_id'],
+			"#parent" => $_POST['parent']
 		);
 
-		if($dbc->Update("os_users",$data,"id=".$_POST['id'])){
+		if($dbc->Update("cms_menu",$data,"id=".$_POST['id'])){
 			echo json_encode(array(
 				'success'=>true
 			));
-			$menu = $dbc->GetRecord("os_users","*","id=".$_POST['id']);
-			$os->save_log(0,$_SESSION['auth']['user_id'],"menu-edit",$_POST['id'],array("os_users" => $menu));
+			$menu = $dbc->GetRecord("cms_menu","*","id=".$_POST['id']);
+			$os->save_log(0,$_SESSION['auth']['user_id'],"menu-edit",$_POST['id'],array("cms_menu" => $menu));
 		}else{
 			echo json_encode(array(
 				'success'=>false,

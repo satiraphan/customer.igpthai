@@ -23,6 +23,8 @@
 <script>
 	var plugins = [
 		'apps/menu/include/interface.js',
+		'plugins/jquery-ui-1.14.1/jquery-ui.min.js',
+		'plugins/jquery-ui-1.14.1/jquery-ui.min.css',
 		'plugins/datatables/dataTables.bootstrap4.min.css',
 		'plugins/datatables/responsive.bootstrap4.min.css',
 		'plugins/datatables/jquery.dataTables.bootstrap4.responsive.min.js',
@@ -39,7 +41,7 @@
 				if($os->allow("menu","add"))include "control/controller.add.js";
 				if($os->allow("menu","edit"))include "control/controller.edit.js";
 				if($os->allow("menu","remove"))include "control/controller.remove.js";
-				if($os->allow("menu","sort"))include "control/controller.sort.js";
+				if($os->allow("menu","edit"))include "control/controller.sort.js";
 				break;
 		}
 	?>

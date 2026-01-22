@@ -1,9 +1,8 @@
-	fn.app.menu.dialog_remove = function() {
-		var item_selected = $("#tblMenu").data("selected");
+	fn.app.menu.dialog_remove = function(id) {
 		$.ajax({
 			url: "apps/menu/view/dialog.remove.php",
 			type: "POST",
-			data: {item:item_selected},
+			data: {id:id},
 			dataType: "html",
 			success: function(html){
 				$("body").append(html);
@@ -12,12 +11,10 @@
 		});
 	};
 
-	fn.app.menu.remove = function(){
-		$.post("apps/menu/xhr/action-remove.php",$("form[name=form_remove_menu]").serialize(),function(response){
+	fn.app.menu.remove = function(id){
+		$.post("apps/menu/xhr/action-remove.php",{id:id},function(response){
 			if(response.success){
-				$("#tblMenu").data("selected",[]);
-				$("#tblMenu").DataTable().draw();
-				$("#dialog_remove_menu").modal("hide");
+				window.location.reload();
 			}else{
 				fn.notify.warnbox(response.msg,"Oops...");
 			}

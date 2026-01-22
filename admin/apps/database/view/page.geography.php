@@ -14,7 +14,7 @@
 		<nav class="nav nav-gap-y-1 flex-column">
 		<?php
 		foreach($aSection as $sec){
-			echo '<a class="nav-item nav-link nav-link-faded has-icon'.($this->section==$sec[0]?" active":"").'" href="#apps/database/index.php?view=geography&section='.$sec[0].'">';
+			echo '<a class="nav-item nav-link nav-link-faded has-icon'.($this->section==$sec[0]?" active":"").'" href="#/database/geography/'.$sec[0].'">';
 				echo '<i class="'.$sec[2].'"></i>';
 				echo '<span class="hidden-sm-down ml-1"> '.$sec[1].'</span>';
 			echo '</a>';

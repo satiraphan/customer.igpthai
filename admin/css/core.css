@@ -23,6 +23,10 @@ body,
 	cursor:pointer;
 }
 
+.move-node{
+	cursor:move;
+}
+
 .arrow{
 	cursor:default;
 }
@@ -41,4 +45,16 @@ div.dataTables_wrapper div.dataTables_filter input{
     background-repeat: no-repeat;
     background-size: 20px;
     background-position: right 5px center;
+}
+
+
+/* 1. ซ่อนปุ่มไว้เป็นค่าเริ่มต้น */
+.btn-in-row {
+  opacity: 0;
+  transition: opacity 0.2s; /* เพิ่มความสมูทเวลาแสดงผล */
+}
+	
+/* 2. เมื่อเอาเมาส์ไปวางที่แถว (tr) ให้ปุ่มที่อยู่ในแถวนั้นแสดงออกมา */
+tr:hover .btn-in-row {
+  opacity: 1;
 }

@@ -24,13 +24,13 @@
 	}else{
 		$data = array(
 			'#id' => "DEFAULT",
-			'name' => $_POST['name'],
-			'local_name' => $_POST['local_name'],
+			'name' =>  addslashes($_POST['name']),
+			'local_name' => addslashes($_POST['local_name']),
 			'region' => 0,
-			'iso' => $_POST['iso'],
-			'iso3' => $_POST['iso3'],
+			'iso' => addslashes($_POST['iso']),
+			'iso3' => addslashes($_POST['iso3']),
 			'#numcode' => "NULL",
-			'phonecode' => $_POST['phonecode']
+			'phonecode' => addslashes($_POST['phonecode'])
 		);
 		
 		if($dbc->Insert("db_countries",$data)){

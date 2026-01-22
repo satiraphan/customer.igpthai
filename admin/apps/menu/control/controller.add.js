@@ -15,9 +15,7 @@
 	fn.app.menu.add = function(){
 		$.post("apps/menu/xhr/action-add.php",$("form[name=form_add_menu]").serialize(),function(response){
 			if(response.success){
-				$("#tblMenu").data("selected",[]);
-				$("#tblMenu").DataTable().draw();
-				$("#dialog_add_menu").modal("hide");
+				window.location.reload();
 			}else{
 				fn.notify.warnbox(response.msg,"Oops...");
 			}

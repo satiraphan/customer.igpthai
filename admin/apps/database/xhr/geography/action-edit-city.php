@@ -11,23 +11,23 @@
 	$dbc->Connect();
 	$os = new oceanos($dbc);
 	
-	if($dbc->HasRecord("db_cities","name = '".$_REQUEST['name']."' AND id != ".$_REQUEST['id'])){
+	if($dbc->HasRecord("db_cities","name = '".addslashes($_POST['name'])."' AND id != ".$_POST['id'])){
 		echo json_encode(array(
 			'success'=>false,
 			'msg'=>'city Name is already exist.'
 		));
 	}else{
 		$data = array(
-			'name' => $_REQUEST['name'],
-			'country' => $_REQUEST['country']
+			'name' => addslashes($_POST['name']),
+			'country' => addslashes($_POST['country'])
 		);
 		
-		if($dbc->Update("db_cities",$data,"id=".$_REQUEST['id'])){
+		if($dbc->Update("db_cities",$data,"id=".$_POST['id'])){
 			echo json_encode(array(
 				'success'=>true
 			));
-			$city = $dbc->GetRecord("db_cities","*","id=".$_REQUEST['id']);
-			$os->save_log(0,$_SESSION['auth']['user_id'],"city-edit",$_REQUEST['id'],array("db_cities" => $city));
+			$city = $dbc->GetRecord("db_cities","*","id=".$_POST['id']);
+			$os->save_log(0,$_SESSION['auth']['user_id'],"city-edit",$_POST['id'],array("db_cities" => $city));
 		}else{
 			echo json_encode(array(
 				'success'=>false,

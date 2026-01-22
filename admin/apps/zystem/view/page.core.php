@@ -12,7 +12,7 @@
 		<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 		<?php
 		foreach($aSection as $sec){
-			echo '<a class="nav-link'.($this->section==$sec[0]?" active":"").'" href="#apps/zystem/index.php?view=core&section='.$sec[0].'" aria-selected="true">';
+			echo '<a class="nav-link'.($this->section==$sec[0]?" active":"").'" href="#/zystem/core/'.$sec[0].'" aria-selected="true">';
 				echo '<i class="'.$sec[2].'"></i>';
 				echo '<span class="hidden-sm-down ml-1"> '.$sec[1].'</span>';
 			echo '</a>';

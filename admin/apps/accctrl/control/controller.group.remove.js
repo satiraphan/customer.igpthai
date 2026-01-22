@@ -9,8 +9,6 @@
 			success: function(html){
 				$("body").append(html);
 				fn.ui.modal.setup({dialog_id : "#dialog_remove_group"});
-				
-				
 			}	
 		});
 	};

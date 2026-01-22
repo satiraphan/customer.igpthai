@@ -9,9 +9,14 @@
 		"icon" : "trello",
 		"path" : "apps/dashboard/index.php"
 	},{
+		"appname" : "content",
+		"name" : "Content",
+		"icon" : "fa-regular fa-newspaper",
+		"path" : "apps/content/index.php"
+	},{
 		"appname" : "page",
 		"name" : "Pages",
-		"icon" : "fas fa-pages",
+		"icon" : "fa-thin fa-browser",
 		"path" : "apps/page/index.php"
 	},{
 		"appname" : "menu",

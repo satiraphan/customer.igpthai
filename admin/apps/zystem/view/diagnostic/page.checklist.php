@@ -1,3 +1,6 @@
+<?php
+	$dbc = $this->dbc;
+?>
 <h3>
 	Diagnotics Checklist for Preparing System
 </h3>
@@ -25,23 +28,28 @@
 					echo '</td>';
 					echo '<td class="text-center">';
 						if (defined('PHP_MAJOR_VERSION') && PHP_MAJOR_VERSION >= 5){
-							echo 'Pass';
+							echo '<i class="fa fa-check text-success"></i> Pass';
 						}else{
-							echo 'Fail';
+							echo '<i class="fa fa-times text-danger"></i> Fail';
 						}
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
 					echo '<td>Mysql Version</td>';
-					echo '<td class="text-center"> Morethan 10 </td>';
+					echo '<td class="text-center"> Morethan 6 </td>';
 					echo '<td class="text-center">';
-						echo exec("mysql -V");
+					$sql = "SELECT VERSION()";
+					$rst = $dbc->Query($sql);
+					$line = $dbc->Fetch($rst);
+						$sql_version = $line[0];
+						echo $line[0];
+						//echo exec("mysql -V");
 					echo '</td>';
 					echo '<td class="text-center">';
-						if (defined('PHP_MAJOR_VERSION') && PHP_MAJOR_VERSION >= 5){
-							echo 'Pass';
+						if ($sql_version >= 5){
+							echo '<i class="fa fa-check text-success"></i> Pass';
 						}else{
-							echo 'Fail';
+							echo '<i class="fa fa-times text-danger"></i> Fail';
 						}
 					echo '</td>';
 				echo '</tr>';
@@ -54,7 +62,7 @@
 						echo $permiss;
 					echo '</td>';
 					echo '<td class="text-center">';
-						if($permiss == "1777"){echo 'Pass';}else{echo 'Fail';}
+						if($permiss == "1777"){echo '<i class="fa fa-check text-success"></i> Pass';}else{echo '<i class="fa fa-times text-danger"></i> Fail';}
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
@@ -66,7 +74,7 @@
 						echo $permiss;
 					echo '</td>';
 					echo '<td class="text-center">';
-						if($permiss == "1777"){echo 'Pass';}else{echo 'Fail';}
+						if($permiss == "1777"){echo '<i class="fa fa-check text-success"></i> Pass';}else{echo '<i class="fa fa-times text-danger"></i> Fail';}
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
@@ -78,7 +86,7 @@
 						echo $permiss;
 					echo '</td>';
 					echo '<td class="text-center">';
-						if($permiss == "1777"){echo 'Pass';}else{echo 'Fail';}
+						if($permiss == "1777"){echo '<i class="fa fa-check text-success"></i> Pass';}else{echo '<i class="fa fa-times text-danger"></i> Fail';}
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';
@@ -90,7 +98,7 @@
 						echo $permiss;
 					echo '</td>';
 					echo '<td class="text-center">';
-						if($permiss == "1777"){echo 'Pass';}else{echo 'Fail';}
+						if($permiss == "1777"){echo '<i class="fa fa-check text-success"></i> Pass';}else{echo '<i class="fa fa-times text-danger"></i> Fail';}
 					echo '</td>';
 				echo '</tr>';
 				echo '<tr>';

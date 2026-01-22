@@ -12,7 +12,7 @@
 	$dbc->Connect();
 
 	$os = new oceanos($dbc);
-	$menu = $dbc->GetRecord("os_users","*","id=".$_POST['id']);
+	$menu = $dbc->GetRecord("cms_menu","*","id=".$_POST['id']);
 
 	$modal = new imodal($dbc,$os->auth);
 
@@ -27,7 +27,7 @@
 		array("id",$menu['id'])
 	));
 
-	$blueprint = array(
+$blueprint = array(
 		array(
 			array(
 				"name" => "name",
@@ -35,7 +35,50 @@
 				"placeholder" => "Menu Name",
 				"value" => $menu['name']
 			)
-		)
+		),
+		array(
+			array(
+				"type" => "comboboxdb",
+				"name" => "page_id",
+				"caption" => "Page",
+				"source" => array(
+					"table" => "cms_pages",
+					"name" => "name",
+					"value" => "id",
+				),
+				"default" => array(
+					"name" => "None",
+					"value" => "null"
+				),
+				"value" => $menu['page_id']
+			)
+		),
+		array(
+			array(
+				"type" => "checkbox",
+				"name" => "status",
+				"caption" => "Status",
+				"text" => "เปิดการใช้งาน",
+				"value" => $menu['status']==1?true:false
+			)
+		),
+		array(
+			array(
+				"type" => "comboboxdb",
+				"name" => "parent",
+				"caption" => "Parent",
+				"source" => array(
+					"table" => "cms_menu",
+					"name" => "name",
+					"value" => "id",
+				),
+				"default" => array(
+					"name" => "None",
+					"value" => "null"
+				),
+				"value" => $menu['parent']	
+			)
+		),
 	);
 
 	$modal->SetBlueprint($blueprint);

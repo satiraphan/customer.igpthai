@@ -11,14 +11,14 @@
 	$dbc->Connect();
 	$os = new oceanos($dbc);
 	
-	if($dbc->HasRecord("db_districts","name = '".$_POST['name']."' AND id != ".$_POST['id'])){
+	if($dbc->HasRecord("db_districts","name = '".addslashes($_POST['name'])."' AND id != ".$_POST['id'])){
 		echo json_encode(array(
 			'success'=>false,
 			'msg'=>'district Name is already exist.'
 		));
 	}else{
 		$data = array(
-			'name' => $_POST['name'],
+			'name' => addslashes($_POST['name']),
 			'#city' => $_POST['city'],
 			'#country' => $_POST['country']
 		);

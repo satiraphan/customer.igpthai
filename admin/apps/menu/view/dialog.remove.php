@@ -12,27 +12,15 @@
 	$dbc->Connect();
 
 	$os = new oceanos($dbc);
+	
 
 	class myModel extends imodal{
 		function body(){
 			$dbc = $this->dbc;
-			$items = isset($this->param['item'])?$this->param['item']:array();
-			$removable = true;
-
-			if(count($items)==0){
-				$removable = false;
-			}
-
-			if($removable){
-				echo '<ul>';
-				foreach($items as $item){
-					$menu = $dbc->GetRecord("os_users","*","id=".$item);
-					echo "<li>".$menu['id'].' : '.$menu['name']."</li>";
-				}
-				echo '</ul>';
-			}else{
-				echo 'Please selecte item to remove!';
-			}
+			$menu = $dbc->GetRecord("cms_menu","*","id=".$this->param['id']);
+			echo '<p>ต้องการลบเมนูนี้ใช่หรือไม่?</p>';
+			echo '<h4>'.$menu['name'].'</h4>';
+			
 		}
 	}
 
@@ -41,7 +29,7 @@
 	$modal->setModel("dialog_remove_menu","Remove Menu");
 	$modal->setButton(array(
 		array("close","btn-secondary","Dismiss"),
-		array("action","btn-danger","Remove","fn.app.menu.remove()")
+		array("action","btn-danger","Remove","fn.app.menu.remove(".$_POST['id'].")")
 	));
 	$modal->EchoInterface();
 

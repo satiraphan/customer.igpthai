@@ -49,7 +49,8 @@
 				),
 				"name" => "account",
 				"caption" => "Account",
-				"value" => $group['account']
+				"value" => $group['account'],
+				"disabled"=> $group['id'] == 1 ? true : false
 			)
 		)
 	);

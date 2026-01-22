@@ -47,8 +47,8 @@
 			<div class="col-md-auto d-flex justify-content-center">
 				<div class="card shadow">
 					<div class="card-header bg-primary text-white flex-column">
-						<h4 class="text-center mb-0">Log In</h4>
-						<div class="text-center opacity-50 font-italic">Nebula Operation System</div>
+						<h4 class="text-center mb-0">ระบบจัดการ Website</h4>
+						<div class="text-center opacity-50 font-italic">IGPThai Admin</div>
 					</div>
 					<div class="card-body p-4">
 
@@ -57,42 +57,30 @@
 							<div class="form-group">
 								<div class="floating-label input-icon">
 									<i class="material-icons">person_outline</i>
-									<input type="text" class="form-control" placeholder="Username" name="username" autocomplete="off">
-									<label for="username">Username</label>
+									<input type="text" class="form-control" placeholder="ชื่อผู้ใช้" name="username" autocomplete="off">
+									<label for="username">ชื่อผู้ใช้</label>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="floating-label input-icon">
 									<i class="material-icons">lock_open</i>
-									<input type="password" class="form-control" placeholder="Password" name="password">
-									<label for="password">Password</label>
+									<input type="password" class="form-control" placeholder="รหัสผ่าน" name="password">
+									<label for="password">รหัสผ่าน</label>
 								</div>
 							</div>
 							<div class="form-group d-flex justify-content-between align-items-center">
 								<div class="custom-control custom-checkbox">
 									<input type="checkbox" class="custom-control-input" id="remember">
-									<label class="custom-control-label" for="remember">Remember me</label>
+									<label class="custom-control-label" for="remember">จดจำฉัน</label>
 								</div>
-								<a href="?forgotpass" class="text-primary text-decoration-underline small">Forgot password ?</a>
+								<a href="?forgotpass" class="text-primary text-decoration-underline small">ลืมรหัสผ่าน ?</a>
 							</div>
-							<button type="submit" class="btn btn-primary btn-block">LOG IN</button>
+							<button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
 						</form>
 						
 						<!-- Social Login -->
-						<div class="divider-text my-3">or</div>
 						
-						<button type="button" class="btn btn-outline-danger btn-block mb-2" id="google-login-btn">
-							<i class="fab fa-google mr-2"></i> Login with Google
-						</button>
 						
-						<button type="button" class="btn btn-outline-primary btn-block" id="facebook-login-btn">
-							<i class="fab fa-facebook mr-2"></i> Login with Facebook
-						</button>
-						
-						<div class="text-center mt-3 small">
-							Don't have an account? 
-							<a href="?register" class="text-primary text-decoration-underline">Register</a>
-						</div>
 						<!-- /LOG IN FORM -->
 
 					</div>

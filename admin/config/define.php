@@ -19,7 +19,7 @@
 	
 	define("ORG_NAME","Maewnam Network Solutions Co., Ltd.");
 	define("ORG_WEBSITE","https://www.maewnam.com");
-	define("SYSTEM_NAME","OceanOS Nebula");
+	define("SYSTEM_NAME","IGPThai Admin");
 	
 	define("GOOGLE_CLIENT_ID","410506135773-g2irchhj0gpjhp422ccfmj90ntbsajuk.apps.googleusercontent.com");
 	define("GOOGLE_CLIENT_SECRET","YOUR_GOOGLE_CLIENT_SECRET");

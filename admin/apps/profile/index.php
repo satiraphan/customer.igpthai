@@ -15,9 +15,10 @@
 	$panel->setView(isset($_GET['view'])?$_GET['view']:'overview');
 	
 	$panel->setMeta(array(
-		array('overview'	,"Information",	'far fa-lg fa-info'),
-		array('message'		,"Message",		'far fa-lg fa-envelope'),
-		array('activity'	,"Activity",	'far fa-lg fa-rss')
+		array('overview'	,"Information",	'fa-sharp fa-thin fa-circle-info'),
+		array('message'		,"Message",		'fa-sharp fa-thin fa-circle-envelope'),
+		array('activity'	,"Activity",	'fa-sharp fa-thin fa-square-rss'),
+		array('setting'		,"Setting",		'fa-sharp fa-thin fa-wrench')
 	));
 	
 	$panel->EchoInterface_verticle();
@@ -55,6 +56,9 @@
 				include_once "control/controller.message.view.js";
 				//include_once "control/controller.profile.avatar.js";
 				//include_once "control/controller.profile.qoute.js";
+				break;
+			case "setting":
+				include_once "control/controller.setting.js";
 				break;
 		}
 		?>

@@ -3,7 +3,8 @@
  * 2020 : Form Custom Type in Default : Todsaporn S.
  * 2021-11-27 : Change Breadcrumb Bottom Margin
  * 2021-11-27 : SetFrom to SetForm
- * 
+ * 2026-06-12 : Fix Vertical Tab Link : Todsaporn S.
+ * 2024-06-24 : Add Disabled Option to Combobox and ComboboxDB : Todsaporn S.
  */
  
 	class iface{
@@ -82,7 +83,8 @@
 					echo '<ul class="nav nav-tabs" role="tablist">';
 					foreach($this->header_meta as $header){
 						$active = $this->view == $header[0] ? " active" : "";
-						$href = '#apps/'.$this->app.'/index.php?view='.$header[0];
+						$href = '#/'.$this->app.'/'.$header[0];
+						//$href = '#apps/'.$this->app.'/index.php?view='.$header[0];
 						echo '<li class="nav-item">';
 							echo '<a class="nav-link'.$active.'" href="'.$href.'" ><i class="'.$header[2].'"></i> '.$header[1].'</a>';
 						echo '</li>';							
@@ -105,9 +107,10 @@
 							echo '<nav class="nav flex-column nav-pills nav-gap-y-1">';
 							foreach($this->header_meta as $header){
 								$active = $this->view == $header[0] ? " active" : "";
-								$href = '#apps/'.$this->app.'/index.php?view='.$header[0];
+								$href = '#/'.$this->app.'/'.$header[0];
+								//$href = '#apps/'.$this->app.'/index.php?view='.$header[0];
 								echo '<a href="'.$href.'" class="nav-item nav-link has-icon nav-link-faded'.$active.'">';
-									echo '<i class="'.$header[2].'"></i> '.$header[1];
+									echo '<i class="'.$header[2].' mr-1"></i> '.$header[1];
 								echo '</a>';
 							}
 							echo '</nav>';
@@ -120,7 +123,7 @@
 						echo '<ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">';
 							foreach($this->header_meta as $header){
 								$active = $this->view == $header[0] ? " active" : "";
-								$href = '#apps/'.$this->app.'/index.php?view='.$header[0];
+								$href = '#/'.$this->app.'/'.$header[0];
 								echo '<li class="nav-item">';
 									echo '<a href="'.$href.'" class="nav-link has-icon'.$active.'">';
 										echo '<i class="'.$header[2].'"></i> '.$header[1];
@@ -319,7 +322,9 @@
 					echo $control['html'];
 					break;
 				case "combobox":
-					echo '<select name="'.$control['name'].'" class="form-control'.$class.'">';
+					$disabled = "";if(isset($control['disabled']) && $control['disabled'] == true){$disabled = ' disabled';}
+					
+					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$disabled.'>';
 					foreach($control['source'] as $item){
 						if(is_array($item)){
 							
@@ -344,10 +349,11 @@
 					echo '</select>';
 					break;
 				case "comboboxdb":
+					$disabled = "";if(isset($control['disabled']) && $control['disabled'] == true){$disabled = ' disabled';}
 					$readonly = "";if(isset($control['readonly'])){$readonly = ' readonly="'.$control['readonly'].'"';}
 					$multiple = "";if(isset($control['multiple'])){$multiple = ' multiple="'.$control['multiple'].'"';}
 					$size = "";if(isset($control['size'])){$size = ' size="'.$control['size'].'"';}
-					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$readonly.$multiple.$size.'>';
+					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$disabled.$readonly.$multiple.$size.'>';
 					if(isset($control['default'])){
 						if(is_array($control['default'])){
 							echo '<option value="'.$control['default']['value'].'">'.$control['default']['name'].'</option>';
@@ -374,8 +380,10 @@
 					echo '</select>';
 					break;
 				case "comboboxdatabank":
+					$disabled = "";if(isset($control['disabled']) && $control['disabled'] == true){$disabled = ' disabled';}
+					
 					$readonly = "";if(isset($control['readonly'])){$readonly = ' readonly="'.$control['readonly'].'"';}
-					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$readonly.'>';
+					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$readonly.$disabled.'>';
 					if(isset($control['default'])){
 						if(is_array($control['default'])){
 							echo '<option value="'.$control['default']['value'].'">'.$control['default']['name'].'</option>';

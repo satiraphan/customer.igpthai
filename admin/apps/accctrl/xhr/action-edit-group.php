@@ -10,8 +10,10 @@
 	$dbc = new dbc;
 	$dbc->Connect();
 	$os = new oceanos($dbc);
+
+	$cond_account = isset($_POST['account']) ? " AND account = ".$_POST['account'] : "";
 	
-	if($dbc->HasRecord("os_groups","name = '".$_POST['name']."' AND id != ".$_POST['group_id'].' AND account = '.$_POST['account'])){
+	if($dbc->HasRecord("os_groups","name = '".$_POST['name']."' AND id != ".$_POST['group_id'].$cond_account)){
 		echo json_encode(array(
 			'success'=>false,
 			'msg'=>'Group Name is already exist.'
@@ -19,9 +21,10 @@
 	}else{
 		$data = array(
 			'name' => $_POST['name'],
-			'#updated' => 'NOW()',
-			'#account' => $_POST['account']
+			'#updated' => 'NOW()'
 		);
+
+		if(isset($_POST['account'])){$data['#account'] = $_POST['account'];}
 		
 		if($dbc->Update("os_groups",$data,"id=".$_POST['group_id'])){
 			echo json_encode(array(

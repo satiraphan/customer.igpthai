@@ -11,10 +11,17 @@
 	$dbc->Connect();
 	$os = new oceanos($dbc);
 
-	foreach($_POST['items'] as $item){
-		$menu = $dbc->GetRecord("os_users","*","id=".$item);
-		$dbc->Delete("os_users","id=".$item);
-		$os->save_log(0,$_SESSION['auth']['user_id'],"menu-delete",$id,array("os_users" => $menu));
+	$menu = $dbc->GetRecord("cms_menu","*","id=".$_POST['id']);
+	if($dbc->Delete("cms_menu","id=".$_POST['id'])){
+		echo json_encode(array(
+			'success'=>true
+		));
+		$os->save_log(0,$_SESSION['auth']['user_id'],"menu-delete",$_POST['id'],array("cms_menu" => $menu));
+	}else{
+		echo json_encode(array(
+			'success'=>false,
+			'msg' => "Delete Error"
+		));
 	}
 
 	$dbc->Close();

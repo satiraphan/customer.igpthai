@@ -1,6 +1,14 @@
 <?php
 	$menu_content = json_decode(file_get_contents("apps/menu.json"),true);
 	$menu_type = $os->load_variable("menutype","string");
+
+	$user = $dbc->GetRecord("os_users","*","id=".$os->auth['id']);
+	$setting = json_decode($user['setting'],true);
+	if(isset($setting['theme']) && $setting['theme']!=""){
+		$theme = $setting['theme'];
+	}else{
+		$theme = "dark";
+	}
 ?>
 <!doctype html>
 <html lang="<?php echo $_SESSION['lang'];?>">
@@ -15,7 +23,7 @@
 
 	<link rel="stylesheet" href="css/modern/style.css" id="main-css">
 
-	<link rel="stylesheet" href="css/sidebar-dark.min.css" id="theme-css"> <!-- options: blue,cyan,dark,gray,green,pink,purple,red,royal,ash,crimson,namn,frost -->
+	<link rel="stylesheet" href="css/sidebar-<?php echo $theme;?>.min.css" id="theme-css"> <!-- options: blue,cyan,dark,gray,green,pink,purple,red,royal,ash,crimson,namn,frost -->
 	<link rel="stylesheet" media="screen, print" href="css/fa-regular.css">
 	<link rel="stylesheet" media="screen, print" href="css/fa-brands.css">
 	<link rel="stylesheet" media="screen, print" href="css/fa-solid.css">
@@ -33,7 +41,7 @@
 		<!-- Sidebar header -->
 		<div class="sidebar-header">
 			<a href="#" class="logo">
-				<img src="img/logo-white.svg" alt="Logo" id="main-logo"><?php echo SYSTEM_NAME;?>
+				<img src="img/igp-logo.png" alt="Logo" id="main-logo"style="filter:brightness(0) invert(1);"><?php echo SYSTEM_NAME;?>
 			</a>
 			<a href="#" class="nav-link nav-icon rounded-circle ml-auto" data-toggle="sidebar">
 				<i class="material-icons">close</i>
@@ -95,12 +103,12 @@
 				<?php include "part/iface_notify.php";?>
 				<li class="nav-item dropdown ml-2">
 					<a class="nav-link nav-link-faded rounded nav-link-img dropdown-toggle px-2" href="#" data-toggle="dropdown" data-display="static">
-						<img src="<?php echo $os->auth['avatar']; ?>" class="rounded-circle mr-2">
+						<img src="<?php echo $os->auth['avatar']; ?>" onerror="this.onerror=null; this.src='img/default/noimage.png';" class="rounded-circle mr-2">
 						<span class="d-none d-sm-block"><?php echo $os->auth['name']; ?></span>
 					</a>
 					<div class="dropdown-menu dropdown-menu-right pt-0 overflow-hidden">
 						<div class="media align-items-center bg-primary text-white px-4 py-3 mb-2">
-							<img src="<?php echo $os->auth['avatar']; ?>" class="rounded-circle" width="50" height="50">
+							<img src="<?php echo $os->auth['avatar']; ?>" onerror="this.onerror=null; this.src='img/default/noimage.png';" class="rounded-circle" width="50" height="50">
 							<div class="media-body ml-2 text-nowrap">
 								<h6 class="mb-0"><?php echo $os->auth['display']; ?></h6>
 								<span class="text-gray-400 font-size-sm"><?php echo $os->auth['group']; ?></span>

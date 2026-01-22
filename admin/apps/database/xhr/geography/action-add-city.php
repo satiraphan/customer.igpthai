@@ -11,7 +11,7 @@
 	$dbc->Connect();
 	$os = new oceanos($dbc);
 	
-	if($dbc->HasRecord("db_cities","name = '".$_REQUEST['name']."'")){
+	if($dbc->HasRecord("db_cities","name = '".addslashes($_POST['name'])."'")){
 		echo json_encode(array(
 			'success'=>false,
 			'msg'=>'city Name is already exist.'
@@ -19,8 +19,8 @@
 	}else{
 		$data = array(
 			'#id' => "DEFAULT",
-			'name' => $_REQUEST['name'],
-			'country' => $_REQUEST['country']
+			'name' => addslashes($_POST['name']),
+			'country' => addslashes($_POST['country'])
 		);
 		
 		if($dbc->Insert("db_cities",$data)){
