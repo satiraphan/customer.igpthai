@@ -7,6 +7,7 @@
  * 2018/02/20 : Fixed Bug on Capital Letter of JPG : Todsaporn S.
  * 2020/10/17 : Upgrade for NebulaOS : Todsaporn S.
  * 2020-12-31 : 
+ * 2026/06/10 : Added Permission Check Before Upload File : Todsaporn S.
  */
 
 
@@ -137,39 +138,42 @@ class oceanos{
 	
 	function upload($file,$target){
 		$allowed =  $this->allow_upload_file;
-		if(!isset($file)){
-			return array(
-				'success' => false,
-				'msg' => "No File Upload!"
-			);
-		}else{
-			$filename = $file['name'];
-			$ext = pathinfo($filename, PATHINFO_EXTENSION);
-			if(!in_array($ext,$allowed)) {
-				return array(
-					'success'=>false,
-					'msg' => "File (.".$ext.") is not support!"
-				);
-			}else{
-				try{
-					if(move_uploaded_file($file['tmp_name'],$target)){
-						return array(
-							'success' => true
-						);
-					}else{
-						return array(
-							'success' => false,
-							'msg' => "Cannot Upload!"
-						);
-					}
-				}catch(Exception $e){
-					return array(
-						'success' => false,
-						'msg' => $e
-					);
-					
-				}
+
+		// 1. Check if file exists in the request
+		if (!isset($file) || empty($file['tmp_name'])) {
+			return array('success' => false, 'msg' => "No File Upload!");
+		}
+
+		$filename = $file['name'];
+    	$ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+		// 2. Validate Extension
+		if (!in_array($ext, $allowed)) {
+			return array('success' => false, 'msg' => "File (.".$ext.") is not supported!");
+		}
+
+		// --- NEW PERMISSION CHECKS START ---
+		$targetDir = dirname($target);
+
+		// Check if directory exists
+		if (!is_dir($targetDir)) {
+			return array('success' => false, 'msg' => "Target directory does not exist.");
+		}
+
+		// Check if directory is writable
+		if (!is_writable($targetDir)) {
+			return array('success' => false, 'msg' => "Server does not have permission to write to this folder.");
+		}
+		// --- NEW PERMISSION CHECKS END ---
+
+		try {
+			if (move_uploaded_file($file['tmp_name'], $target)) {
+				return array('success' => true);
+			} else {
+				return array('success' => false, 'msg' => "Upload failed (Internal Error).");
 			}
+		} catch (Exception $e) {
+			return array('success' => false, 'msg' => $e->getMessage());
 		}
 	}
 	

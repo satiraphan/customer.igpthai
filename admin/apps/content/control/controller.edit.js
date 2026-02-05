@@ -8,3 +8,7 @@
 		},"json");
 		return false;
 	};
+
+	$('textarea[name=data]').summernote({
+		height: 200
+	});

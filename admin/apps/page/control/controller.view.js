@@ -13,8 +13,8 @@ $("#tblPage").DataTable({
 	},
 	"aoColumns": [
 		{"bSortable":false		,"data":"id"		,"class":"text-center",	"sWidth": "20px"  },
-		{"bSort":true					,"data":"name"	,"class":"text-center",	},
-		{"bSortable":false		,"data":"id"		,"class":"text-center" , "sWidth": "80px"  }
+		{"bSort":true			,"data":"name"	,"class":"text-left",	},
+		{"bSortable":false		,"data":"id"		,"class":"text-center" , "sWidth": "100px"  }
 	],"order": [[ 1, "desc" ]],
 	"createdRow": function ( row, data, index ) {
 		var selected = false,checked = "",s = '';
@@ -26,7 +26,9 @@ $("#tblPage").DataTable({
 		s = '';
 		s += fn.ui.button("btn btn-xs btn-outline-dark mr-1","far fa-pen","fn.navigate('page','view=edit&id="+data[0]+"')");
 		s += fn.ui.button("btn btn-xs btn-outline-dark mr-1","far fa-eye","fn.navigate('page','view=lookup&id="+data[0]+"')");
+		s += fn.ui.button("btn btn-xs btn-outline-dark mr-1","fa-regular fa-pen-ruler","fn.navigate('page','view=layout&id="+data[0]+"')");
 		$("td", row).eq(2).html(s);
+
 	}
 });
 fn.ui.datatable.selectable_custom('#tblPage','chk_page',true,function(){

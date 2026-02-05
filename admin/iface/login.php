@@ -46,7 +46,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-auto d-flex justify-content-center">
 				<div class="card shadow">
-					<div class="card-header bg-primary text-white flex-column">
+					<div class="card-header bg-white text-dark flex-column">
 						<h4 class="text-center mb-0">ระบบจัดการ Website</h4>
 						<div class="text-center opacity-50 font-italic">IGPThai Admin</div>
 					</div>
@@ -73,9 +73,9 @@
 									<input type="checkbox" class="custom-control-input" id="remember">
 									<label class="custom-control-label" for="remember">จดจำฉัน</label>
 								</div>
-								<a href="?forgotpass" class="text-primary text-decoration-underline small">ลืมรหัสผ่าน ?</a>
+								<a href="?forgotpass" class="text-dark text-decoration-underline small">ลืมรหัสผ่าน ?</a>
 							</div>
-							<button type="submit" class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
+							<button type="submit" class="btn btn-dark btn-block">เข้าสู่ระบบ</button>
 						</form>
 						
 						<!-- Social Login -->

@@ -4,7 +4,7 @@
 	$modal = new iform($dbc,$os->auth);
 	$modal->setForm("form_edit_content");
 
-	$content = $dbc->GetRecord("os_users","*","id=".$_GET['id']);
+	$content = $dbc->GetRecord("cms_contents","*","id=".$_GET['id']);
 
 	$modal->SetVariable(array(
 		array("id",$content['id']),
@@ -13,10 +13,79 @@
 	$blueprint = array(
 		array(
 			array(
-				"name" => "name",
-				"caption" => "Name",
-				"placeholder" => "Content Name",
-				"value" => $content['name']
+				"type" => "combobox",
+				"name" => "type",
+				"caption" => "ประเภทเนื้อหา",
+				"source" => array(
+					array("content","Content"),
+					array("article","Article"),
+					array("news","News"),
+					array("activity","Activity"),
+					array("gallery","Gallery")
+				),
+				"value" => $content['type']
+			)
+		),
+		array(
+			array(
+				"name" => "title",
+				"caption" => "หัวข้อ",
+				"placeholder" => "หัวข้อเนื้อหา",
+				"value" => $content['title']
+			)
+		),
+		array(
+			array(
+				"type" => "textarea",
+				"name" => "brief",
+				"caption" => "สรุป",
+				"placeholder" => "สรุปเนื้อหา หรือคำอธิบายสั้นๆ",
+				"value" => $content['brief']
+			)
+		),
+		array(
+			array(
+				"type" => "textarea",
+				"name" => "data",
+				"caption" => "เนื้อหา",
+				"placeholder" => "เนื้อหา",
+				"rows" => 10,
+				"value" => $content['data']
+			)
+		),
+		array(
+			array(
+				"type" => "date",
+				"flex"=> 4,
+				"name" => "date_start",
+				"caption" => "วันที่เริ่มต้น",
+				"placeholder" => "วันที่เริ่มต้นเนื้อหา",
+				"value" => $content['date_start']
+			),
+			array(
+				"type" => "date",
+				"flex"=> 4,
+				"name" => "date_end",
+				"caption" => "วันที่สิ้นสุด",
+				"placeholder" => "วันที่สิ้นสุดเนื้อหา",
+				"value" => $content['date_end']
+			)
+		),
+		array(
+			array(
+				"type" => "date",
+				"flex"=> 4,
+				"name" => "date_publish",
+				"caption" => "วันที่เผยแพร่",
+				"value" => $content['date_publish']
+			),
+			array(
+				"type" => "date",
+				"flex"=> 4,
+				"name" => "date_terminate",
+				"caption" => "วันที่สิ้นสุดการเผยแพร่",
+				"placeholder" => "วันที่สิ้นสุดการเผยแพร่",
+				"value" => $content['date_terminate']
 			)
 		)
 	);

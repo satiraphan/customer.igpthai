@@ -26,12 +26,16 @@
 <script>
 	var plugins = [
 		'apps/content/include/interface.js',
+		'plugins/jquery-ui-1.14.1/jquery-ui.min.js',
+		'plugins/jquery-ui-1.14.1/jquery-ui.min.css',
 		'plugins/datatables/dataTables.bootstrap4.min.css',
 		'plugins/datatables/responsive.bootstrap4.min.css',
 		'plugins/datatables/jquery.dataTables.bootstrap4.responsive.min.js',
 		'plugins/select2/css/select2.min.css',
 		'plugins/select2/js/select2.min.js',
-		'plugins/moment/moment.min.js'
+		'plugins/moment/moment.min.js',
+		'plugins/summernote/summernote-bs4.css',
+		'plugins/summernote/summernote-bs4.js',
 	];
 	App.loadPlugins(plugins, null).then(() => {
 		App.checkAll()
@@ -51,6 +55,9 @@
 				break;
 			case "lookup":
 				if($os->allow("content","lookup"))include "control/controller.lookup.js";
+				break;
+			case "gallery":
+				if($os->allow("content","edit"))include "control/controller.gallery.js";
 				break;
 		}
 	?>

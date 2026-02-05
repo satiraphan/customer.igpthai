@@ -7,9 +7,71 @@
 	$blueprint = array(
 		array(
 			array(
-				"name" => "name",
-				"caption" => "Name",
-				"placeholder" => "Content Name"
+				"type" => "combobox",
+				"name" => "type",
+				"caption" => "ประเภทเนื้อหา",
+				"source" => array(
+					array("content","Content"),
+					array("article","Article"),
+					array("news","News"),
+					array("activity","Activity"),
+					array("gallery","Gallery")
+				)
+			)
+		),
+		array(
+			array(
+				"name" => "title",
+				"caption" => "หัวข้อ",
+				"placeholder" => "หัวข้อเนื้อหา"
+			)
+		),
+		array(
+			array(
+				"type" => "textarea",
+				"name" => "brief",
+				"caption" => "สรุป",
+				"placeholder" => "สรุปเนื้อหา หรือคำอธิบายสั้นๆ",
+			)
+		),
+		array(
+			array(
+				"type" => "textarea",
+				"name" => "data",
+				"caption" => "เนื้อหา",
+				"placeholder" => "เนื้อหา",
+				"rows" => 10
+			)
+		),
+		array(
+			array(
+				"type" => "date",
+				"flex"=> 4,
+				"name" => "date_start",
+				"caption" => "วันที่เริ่มต้น",
+				"placeholder" => "วันที่เริ่มต้นเนื้อหา"
+			),
+			array(
+				"type" => "date",
+				"flex"=> 4,
+				"name" => "date_end",
+				"caption" => "วันที่สิ้นสุด",
+				"placeholder" => "วันที่สิ้นสุดเนื้อหา"
+			)
+		),
+		array(
+			array(
+				"type" => "date",
+				"flex"=> 4,
+				"name" => "date_publish",
+				"caption" => "วันที่เผยแพร่"
+			),
+			array(
+				"type" => "date",
+				"flex"=> 4,
+				"name" => "date_terminate",
+				"caption" => "วันที่สิ้นสุดการเผยแพร่",
+				"placeholder" => "วันที่สิ้นสุดการเผยแพร่"
 			)
 		)
 	);

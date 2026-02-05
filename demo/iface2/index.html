@@ -1,0 +1,300 @@
+
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>IGP Thai News</title>
+		<!-- Bootstrap CSS -->
+		<link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="../plugins/bootstrap-icons/font/bootstrap-icons.css">
+		<link rel="stylesheet" href="../css/corporate/app.min.css">
+		<link rel="stylesheet" href="../css/corporate/vendor.min.css">
+		<style>
+			body {
+				background: linear-gradient(135deg, #e6f0fa 0%, #f7f7f7 100%);
+				font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+				color: #222;
+			}
+			.navbar {
+				background: #003366 !important;
+				box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+			}
+			.navbar-nav .nav-link, .navbar-brand {
+				color: #fff !important;
+				font-weight: 600;
+				letter-spacing: 0.5px;
+				font-size: 1.08em;
+			}
+			.navbar-nav .nav-link:hover, .navbar-brand:hover {
+				color: #ffcc00 !important;
+			}
+			.dropdown-menu {
+				border-radius: 12px;
+				min-width: 220px;
+				box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+			}
+			.dropdown-item:hover {
+				background: #e6f0fa; color: #003366;
+			}
+			.main-content {
+				max-width: 900px;
+				margin: 48px auto;
+				background: #fff;
+				box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+				padding: 40px 32px;
+				border-radius: 18px;
+				position: relative;
+			}
+			.main-content h1 {
+				font-size: 2.2em;
+				font-weight: 700;
+				margin-bottom: 18px;
+				color: #003366;
+			}
+			.main-content h2 {
+				font-size: 1.3em;
+				font-weight: 600;
+				margin-top: 32px;
+				color: #003366;
+			}
+			.main-content img {
+				box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+			}
+			.card-news {
+				background: #fff;
+				border-radius: 16px;
+				box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+				margin-bottom: 24px;
+				padding: 24px;
+				display: flex;
+				align-items: center;
+				gap: 24px;
+			}
+			.card-news img {
+				width: 120px;
+				height: 80px;
+				object-fit: cover;
+				border-radius: 10px;
+			}
+			.card-news .bi {
+				font-size: 2em;
+				color: #003366;
+				margin-right: 12px;
+			}
+			.sidebar {
+				background: #fff;
+				padding: 32px 24px;
+				border-radius: 16px;
+				max-width: 350px;
+				margin: 40px auto;
+				box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+			}
+			.sidebar h3 {
+				color: #003366;
+				font-weight: 700;
+				margin-bottom: 18px;
+			}
+			.sidebar ul {
+				padding-left: 0;
+				list-style: none;
+			}
+			.sidebar li {
+				margin-bottom: 12px;
+			}
+			.sidebar a {
+				color: #003366;
+				text-decoration: none;
+				font-weight: 500;
+				transition: color 0.2s;
+			}
+			.sidebar a:hover {
+				color: #ffcc00;
+			}
+			.footer {
+				background: #003366;
+				color: #fff;
+				text-align: center;
+				padding: 20px 0;
+				margin-top: 48px;
+				font-size: 1.08em;
+				letter-spacing: 0.5px;
+			}
+			.carousel-caption {
+				background: rgba(0,51,102,0.7);
+				border-radius: 12px;
+				padding: 16px 24px;
+			}
+			.carousel-caption h5, .carousel-caption p {
+				color: #fff;
+			}
+			@media (max-width: 900px) {
+				.main-content, .sidebar { max-width: 98vw; margin: 16px auto; padding: 16px; }
+				.card-news { flex-direction: column; gap: 12px; }
+			}
+		</style>
+</head>
+<body>
+		<!-- Navbar -->
+
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#"><i class="bi bi-newspaper"></i> IGP Thai News</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="mainNavbar">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item">
+							<a class="nav-link active" aria-current="page" href="#"><i class="bi bi-house-door"></i> หน้าแรก</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-info-circle"></i> เกี่ยวกับสถาบัน
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+								<li><a class="dropdown-item" href="#"><i class="bi bi-journal-text"></i> ประวัติความเป็นมา</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-bullseye"></i> วิสัยทัศน์ / พันธกิจ / ยุทธศาสตร์</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-people"></i> ผู้บริหารและทีมที่ปรึกษา</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-diagram-3"></i> โครงสร้างสถาบัน</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="serviceDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-briefcase"></i> งานบริการ
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="serviceDropdown">
+								<li><a class="dropdown-item" href="#"><i class="bi bi-book"></i> หลักสูตรอบรม</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-bar-chart"></i> ผลการดำเนินงาน</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text"></i> รายงานประจำปี</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-megaphone"></i> ข่าวประชาสัมพันธ์</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="procureDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-cart-check"></i> จัดซื้อจัดจ้าง
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="procureDropdown">
+								<li><a class="dropdown-item" href="#"><i class="bi bi-newspaper"></i> ข่าวจัดซื้อ-จัดจ้าง</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-pdf"></i> TOR / เอกสาร</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-clipboard-data"></i> รายงานผลการจัดซื้อจัดจ้าง</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="workDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-person-workspace"></i> ร่วมงานกับเรา
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="workDropdown">
+								<li><a class="dropdown-item" href="#"><i class="bi bi-person-plus"></i> สมัครงาน</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-lightbulb"></i> งานวิจัยพัฒนา</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-person-lines-fill"></i> ที่ปรึกษา</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-calendar-event"></i> งานประชุมสัมมนา/กิจกรรม</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="contactDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-envelope"></i> ติดต่อเรา
+							</a>
+							<ul class="dropdown-menu" aria-labelledby="contactDropdown">
+								<li><a class="dropdown-item" href="#"><i class="bi bi-chat-dots"></i> สอบถามทั่วไป</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-person-badge"></i> ขอคำปรึกษา</a></li>
+								<li><a class="dropdown-item" href="#"><i class="bi bi-geo-alt"></i> ข้อมูลการติดต่อ</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+		<!-- Carousel -->
+		<div id="newsCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width:1200px;margin:32px auto 0 auto;">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img src="../img/carousel/carousel-1.jpg" class="d-block w-100" alt="ข่าวประชาสัมพันธ์ 1" style="max-height:350px;object-fit:cover;">
+					<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+						<h5>ข่าวประชาสัมพันธ์ 2568</h5>
+						<p>ประกาศข่าวประชาสัมพันธ์ล่าสุดของสถาบันฯ</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="../img/carousel/carousel-2.jpg" class="d-block w-100" alt="ข่าวประชาสัมพันธ์ 2" style="max-height:350px;object-fit:cover;">
+					<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+						<h5>ข่าวประชาสัมพันธ์ 2567</h5>
+						<p>ติดตามข่าวสารและกิจกรรมย้อนหลัง</p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img src="../img/carousel/carousel-3.jpg" class="d-block w-100" alt="ข่าวประชาสัมพันธ์ 3" style="max-height:350px;object-fit:cover;">
+					<div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded">
+						<h5>กิจกรรมสถาบัน</h5>
+						<p>ภาพกิจกรรมและการประชุมสัมมนา</p>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+
+		<div class="main-content">
+			<h1><i class="bi bi-building"></i> สถาบันส่งเสริมการบริหารกิจการบ้านเมืองที่ดี</h1>
+			<p style="font-size:1.15em;color:#555;margin-bottom:24px;">เว็บไซต์ข่าวสารและบริการภาครัฐ โฉมใหม่ ดีไซน์โมเดิร์น</p>
+			<div class="card-news">
+				<img src="../img/about/about-me.jpg" alt="about">
+				<div>
+					<h2><i class="bi bi-journal-text"></i> ประวัติความเป็นมา</h2>
+					<p style="margin-bottom:0.5em;">
+						ก่อตั้งขึ้น เมื่อวันที่ 7 มีนาคม พ.ศ. 2548 เป็นหน่วยบริการรูปแบบพิเศษ (Service Delivery Unit :SDU) สังกัด สำนักงาน ก.พ.ร. ภายใต้ระเบียบสำนักนายกรัฐมนตรี ว่าด้วยการบริหารงานของหน่วยบริการรูปแบบพิเศษ พ.ศ. 2550 โดยมีวัตถุประสงค์ เพื่อให้เกิดประสิทธิภาพ สูงสุดในการบริการภาครัฐเป็นสำคัญ และเมื่อมีกําลังผลิต หรือขีดความสามารถเหลืออยู่จึงจะให้บริการแก่ประชาชนได้ โดยต้องไม่แข่งขันกับ ภาคเอกชน
+					</p>
+					<p>
+						สถาบันส่งเสริมการบริหารกิจการบ้านเมืองที่ดี สำนักงาน ก.พ.ร. จัดตั้งขึ้นตามมติคณะรัฐมนตรี เมื่อวันที่ 20 มกราคม 2547 โดยได้รับการแปลงสภาพจากหน่วยงานในสังกัดสำนักงาน ก.พ.ร. มาเป็น สถาบันส่งเสริมการบริหารกิจการบ้านเมืองที่ดี สำนักงาน ก.พ.ร. ซึ่งเป็นหน่วยบริการรูปแบบพิเศษ (Service Delivery Unit :SDU) ในกำกับของ สำนักงานคณะกรรมการพัฒนาระบบราชการ (ก.พ.ร.) เมื่อวันที่ 7 มีนาคม 2547 โดยมีหน้าที่ในการให้บริการทางวิชาการแก่สำนักงาน ก.พ.ร. เป็นหลักและให้บริการแก่ส่วน ราชการอื่น หน่วยงานของรัฐและเอกชน เพื่อส่งเสริมการบริหารงานตามหลักการบริหารกิจการบ้านเมืองที่ดี สถาบันส่งเสริมการบริหารกิจการบ้านเมืองที่ดี เป็นหน่วยบริการรูปแบบพิเศษ ไม่มีฐานะเป็นนิติบุคคลอยู่ภายใต้การควบคุมดูแลของสำนักงาน ก.พ.ร. มีชื่อภาษาอังกฤษว่า Institute for Good Governance Promotion เรียกโดยย่อว่า IGP
+					</p>
+				</div>
+			</div>
+		</div>
+		<aside class="sidebar">
+				<h3>ข่าวประชาสัมพันธ์ล่าสุด</h3>
+				<ul>
+						<li><a href="#">ประกาศข่าวประชาสัมพันธ์ 2568 (PDF)</a></li>
+						<li><a href="#">ประกาศข่าวประชาสัมพันธ์ 2567 (PDF)</a></li>
+				</ul>
+		</aside>
+		<footer class="footer">
+				&copy; 2025 สถาบันส่งเสริมการบริหารกิจการบ้านเมืองที่ดี สำนักงาน ก.พ.ร.
+		</footer>
+
+		<!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
+		<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<!-- Example JS: Scroll to top button -->
+		<script>
+			// เพิ่มปุ่ม scroll to top
+			const scrollBtn = document.createElement('button');
+			scrollBtn.innerText = '↑';
+			scrollBtn.style.position = 'fixed';
+			scrollBtn.style.bottom = '32px';
+			scrollBtn.style.right = '32px';
+			scrollBtn.style.background = '#003366';
+			scrollBtn.style.color = '#fff';
+			scrollBtn.style.border = 'none';
+			scrollBtn.style.borderRadius = '50%';
+			scrollBtn.style.width = '48px';
+			scrollBtn.style.height = '48px';
+			scrollBtn.style.fontSize = '2em';
+			scrollBtn.style.display = 'none';
+			scrollBtn.style.zIndex = '999';
+			document.body.appendChild(scrollBtn);
+			window.addEventListener('scroll', function() {
+				scrollBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
+			});
+			scrollBtn.onclick = function() { window.scrollTo({top:0,behavior:'smooth'}); };
+		</script>
+</body>
+</html>

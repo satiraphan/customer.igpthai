@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGPThai - หน้าแรก</title>
+    <link rel="stylesheet" href="../assets/css/corporate/app.min.css">
+    <link href="../plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../plugins/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts: Sarabun -->
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+            color: #43499b;
+            font-size: 1.08em;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        .navbar {
+            background: #43499b !important;
+            box-shadow: 0 2px 12px rgba(67,73,155,0.08);
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .navbar-nav .nav-link, .navbar-brand {
+            color: #ffffff !important;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            font-size: 1.08em;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .navbar-nav .nav-link:hover, .navbar-brand:hover {
+            color: #ed1c24 !important;
+        }
+        .dropdown-menu {
+            border-radius: 12px;
+            min-width: 220px;
+            box-shadow: 0 4px 16px rgba(67,73,155,0.10);
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+            background: #ffffff;
+        }
+        .dropdown-item {
+            font-size: 1em;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: #43499b;
+        }
+        .dropdown-item:hover {
+            background: #2f9194; color: #ffffff;
+        }
+        .main-content {
+            max-width: 900px;
+            margin: 48px auto;
+            background: #ffffff;
+            box-shadow: 0 4px 24px rgba(67,73,155,0.10);
+            padding: 40px 32px;
+            border-radius: 18px;
+            position: relative;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .main-content h1 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #43499b;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .main-content h2 {
+            font-size: 1.3em;
+            font-weight: 600;
+            margin-top: 32px;
+            color: #2f9194;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .main-content img {
+            box-shadow: 0 2px 12px rgba(67,73,155,0.08);
+        }
+        .card-news {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(67,73,155,0.08);
+            margin-bottom: 24px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .card-news img {
+            width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .card-news .bi {
+            font-size: 2em;
+            color: #2f9194;
+            margin-right: 12px;
+        }
+        .sidebar {
+            background: #ffffff;
+            padding: 32px 24px;
+            border-radius: 16px;
+            max-width: 350px;
+            margin: 40px auto;
+            box-shadow: 0 2px 12px rgba(67,73,155,0.08);
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .sidebar h3 {
+            color: #43499b;
+            font-weight: 700;
+            margin-bottom: 18px;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .sidebar ul {
+            padding-left: 0;
+            list-style: none;
+        }
+        .sidebar li {
+            margin-bottom: 12px;
+        }
+        .sidebar a {
+            color: #2f9194;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .sidebar a:hover {
+            color: #ed1c24;
+        }
+        .footer {
+            background: #43499b;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 48px;
+            font-size: 1.08em;
+            letter-spacing: 0.5px;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .carousel-caption {
+            background: rgba(67,73,155,0.7);
+            border-radius: 12px;
+            padding: 16px 24px;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        .carousel-caption h5, .carousel-caption p {
+            color: #ffffff;
+            font-family: 'Sarabun', 'Segoe UI', Arial, sans-serif;
+        }
+        @media (max-width: 900px) {
+            .main-content, .sidebar { max-width: 98vw; margin: 16px auto; padding: 16px; }
+            .card-news { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top" data-bs-theme="dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <img src="https://www.igpthai.org/wp-content/uploads/2021/06/logo.png" alt="IGPThai Logo" style="height:40px; vertical-align:middle;">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" href="index.html">หน้าหลัก</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="aboutDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">เกี่ยวกับสถาบัน</a>
+                            <ul class="dropdown-menu" aria-labelledby="aboutDropdown">
+                                <li><a class="dropdown-item" href="about-us.html">ประวัติความเป็นมา</a></li>
+                                <li><a class="dropdown-item" href="vision-mission.html">วิสัยทัศน์ / พันธกิจ / ยุทธศาสตร์</a></li>
+                                <li><a class="dropdown-item" href="team.html">ผู้บริหารและทีมที่ปรึกษา</a></li>
+                                <li><a class="dropdown-item" href="structure.html">โครงสร้างสถาบัน</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="serviceDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">งานบริการ</a>
+                            <ul class="dropdown-menu" aria-labelledby="serviceDropdown">
+                                <li><a class="dropdown-item" href="knowledge-hub.html">หลักสูตรอบรม</a></li>
+                                <li><a class="dropdown-item" href="performance.html">ผลการดำเนินงาน</a></li>
+                                <li><a class="dropdown-item" href="annual-report.html">รายงานประจำปี</a></li>
+                                <li><a class="dropdown-item" href="news.html">ข่าวประชาสัมพันธ์</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="procureDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">จัดซื้อจัดจ้าง</a>
+                            <ul class="dropdown-menu" aria-labelledby="procureDropdown">
+                                <li><a class="dropdown-item" href="procurement.html">ข่าวจัดซื้อ-จัดจ้าง</a></li>
+                                <li><a class="dropdown-item" href="procurement-tor.html">TOR / เอกสาร กดเข้าไฟล์ PDF</a></li>
+                                <li><a class="dropdown-item" href="procurement-report.html">รายงานผลการจัดซื้อจัดจ้าง</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="workDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">ร่วมงานกับเรา</a>
+                            <ul class="dropdown-menu" aria-labelledby="workDropdown">
+                                <li><a class="dropdown-item" href="career-partnership.html">สมัครงาน</a></li>
+                                <li><a class="dropdown-item" href="research-development.html">งานวิจัยพัฒนา</a></li>
+                                <li><a class="dropdown-item" href="consultant.html">ที่ปรึกษา</a></li>
+                                <li><a class="dropdown-item" href="seminar.html">งานประชุมสัมมนา/กิจกรรม</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="contact-us.html">ติดต่อเรา</a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-danger px-4 fw-bold" style="background:#ed1c24;border:none;" href="login.html"><i class="bi bi-box-arrow-in-right"></i> เข้าสู่ระบบ</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Breaking News Bar -->
+        <div class="bg-danger text-white py-2 px-3">
+            <div class="container-fluid d-flex align-items-center">
+                <strong class="me-3"><i class="bi bi-lightning-fill"></i> ข่าวด่วน:</strong>
+                <marquee behavior="scroll" direction="left" scrollamount="6" class="flex-grow-1">
+                    ประกาศรับสมัครหลักสูตรใหม่ | งานวิจัยล่าสุดเผยแพร่แล้ว | กิจกรรมอบรมเดือนนี้เปิดรับสมัคร!
+                </marquee>
+            </div>
+        </div>
+    </header>
+    <main class="container py-4">
+        <div class="container py-4">
+            <div class="row">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <!-- Featured News -->
+                    <div class="mb-4">
+                        <div class="card mb-3 shadow">
+                            <div class="row g-0">
+                                <div class="col-md-5">
+                                    <img src="../assets/img/carousel/carousel-1.jpg" class="img-fluid rounded-start h-100" alt="ข่าวเด่น">
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="card-body">
+                                        <h3 class="card-title">ข่าวเด่นประจำวัน</h3>
+                                        <p class="card-text">กิจกรรมอบรมเชิงปฏิบัติการล่าสุดของสถาบัน เปิดรับสมัครแล้ววันนี้!</p>
+                                        <p class="card-text"><small class="text-muted">7 ตุลาคม 2025</small></p>
+                                        <a href="news-events.html" class="btn btn-danger">อ่านต่อ</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Latest News Grid -->
+                    <div class="row row-cols-1 row-cols-md-2 g-4 mb-4">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="../assets/img/carousel/carousel-2.jpg" class="card-img-top" alt="ข่าวล่าสุด 1">
+                                <div class="card-body">
+                                    <h5 class="card-title">ข่าวล่าสุด 1</h5>
+                                    <p class="card-text">ประกาศสำคัญจากสถาบันเกี่ยวกับหลักสูตรใหม่</p>
+                                    <a href="news-events.html" class="btn btn-outline-primary btn-sm">อ่านต่อ</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="../assets/img/carousel/carousel-3.jpg" class="card-img-top" alt="ข่าวล่าสุด 2">
+                                <div class="card-body">
+                                    <h5 class="card-title">ข่าวล่าสุด 2</h5>
+                                    <p class="card-text">กิจกรรมอบรมเดือนนี้เปิดรับสมัคร!</p>
+                                    <a href="news-events.html" class="btn btn-outline-primary btn-sm">อ่านต่อ</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="../assets/img/carousel/carousel-1.jpg" class="card-img-top" alt="ข่าวล่าสุด 3">
+                                <div class="card-body">
+                                    <h5 class="card-title">ข่าวล่าสุด 3</h5>
+                                    <p class="card-text">เผยแพร่งานวิจัยใหม่ล่าสุดของสถาบัน</p>
+                                    <a href="knowledge-hub.html" class="btn btn-outline-success btn-sm">อ่านต่อ</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100">
+                                <img src="../assets/img/carousel/carousel-2.jpg" class="card-img-top" alt="ข่าวล่าสุด 4">
+                                <div class="card-body">
+                                    <h5 class="card-title">ข่าวล่าสุด 4</h5>
+                                    <p class="card-text">เปิดรับสมัครโครงการอบรมพิเศษ</p>
+                                    <a href="registration.html" class="btn btn-outline-warning btn-sm">สมัครเลย</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <div class="mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="bi bi-calendar-event"></i> ปฏิทินกิจกรรม</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">อบรมหลักสูตร A - 10 ต.ค.</li>
+                                    <li class="list-group-item">สัมมนาวิชาการ - 15 ต.ค.</li>
+                                    <li class="list-group-item">กิจกรรม CSR - 20 ต.ค.</li>
+                                </ul>
+                                <a href="news-events.html" class="btn btn-outline-info btn-sm mt-2">ดูทั้งหมด</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="bi bi-star-fill text-warning"></i> หลักสูตรแนะนำ</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">หลักสูตรบริหารการเปลี่ยนแปลง</li>
+                                    <li class="list-group-item">หลักสูตร R&D</li>
+                                    <li class="list-group-item">หลักสูตร Public Course</li>
+                                </ul>
+                                <a href="our-services.html" class="btn btn-outline-success btn-sm mt-2">ดูรายละเอียด</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="card shadow">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="bi bi-play-circle"></i> วิดีโอแนะนำ</h5>
+                                <div class="ratio ratio-16x9 rounded shadow">
+                                    <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4" title="IGPThai Video" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+        <footer style="background:#43499b; color:#fff; padding:40px 0 0 0; margin-top:48px; font-family:'Sarabun', 'Segoe UI', Arial, sans-serif;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 mb-4 mb-md-0 text-center text-md-start">
+                        <img src="https://www.igpthai.org/wp-content/uploads/2021/06/logo.png" alt="IGPThai Logo" style="height:48px; margin-bottom:16px;">
+                        <h5 style="font-weight:700;">สถาบันส่งเสริมการบริหารกิจการบ้านเมืองที่ดี</h5>
+                        <p style="font-size:1em; color:#fff; margin-bottom:8px;">Institute for Good Governance Promotion (IGPThai)</p>
+                    </div>
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h6 style="font-weight:600; color:#fff; margin-bottom:12px;">ข้อมูลติดต่อ</h6>
+                        <ul style="list-style:none; padding-left:0; font-size:1em;">
+                            <li><i class="bi bi-geo-alt"></i> 120 หมู่ 3 อาคารรัฐประศาสนภักดี ชั้น 2 ศูนย์ราชการฯ ถนนแจ้งวัฒนะ แขวงทุ่งสองห้อง เขตหลักสี่ กรุงเทพฯ 10210</li>
+                            <li><i class="bi bi-telephone"></i> โทรศัพท์: 02-142-3891-5</li>
+                            <li><i class="bi bi-envelope"></i> อีเมล: info@igpthai.org</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <h6 style="font-weight:600; color:#fff; margin-bottom:12px;">ลิงก์สำคัญ</h6>
+                        <ul style="list-style:none; padding-left:0; font-size:1em;">
+                            <li><a href="index.html" style="color:#fff; text-decoration:none;">หน้าหลัก</a></li>
+                            <li><a href="about-us.html" style="color:#fff; text-decoration:none;">เกี่ยวกับสถาบัน</a></li>
+                            <li><a href="news-events.html" style="color:#fff; text-decoration:none;">ข่าวสารและกิจกรรม</a></li>
+                            <li><a href="contact-us.html" style="color:#fff; text-decoration:none;">ติดต่อเรา</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <hr style="border-color:rgba(255,255,255,0.2); margin:32px 0 16px 0;">
+                <div class="row">
+                    <div class="col-12 text-center" style="font-size:1em; color:#fff; padding-bottom:16px;">
+                        &copy; 2025 สถาบันส่งเสริมการบริหารกิจการบ้านเมืองที่ดี (IGPThai) | All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Example JS: Highlight Card Animation
+        // Example JS: Highlight Card Animation
+        document.querySelectorAll('.card').forEach(function(card){
+            card.addEventListener('mouseenter', function(){
+                card.classList.add('shadow-lg','border-primary');
+            });
+            card.addEventListener('mouseleave', function(){
+                card.classList.remove('shadow-lg','border-primary');
+            });
+        });

@@ -25,6 +25,8 @@
 <script>
 	var plugins = [
 		'apps/page/include/interface.js',
+		'plugins/jquery-ui-1.14.1/jquery-ui.min.js',
+		'plugins/jquery-ui-1.14.1/jquery-ui.min.css',
 		'plugins/datatables/dataTables.bootstrap4.min.css',
 		'plugins/datatables/responsive.bootstrap4.min.css',
 		'plugins/datatables/jquery.dataTables.bootstrap4.responsive.min.js',
@@ -45,6 +47,9 @@
 				break;
 			case "edit":
 				if($os->allow("page","edit"))include "control/controller.edit.js";
+				break;
+			case "layout":
+				if($os->allow("page","edit"))include "control/controller.layout.js";
 				break;
 		}
 	?>
