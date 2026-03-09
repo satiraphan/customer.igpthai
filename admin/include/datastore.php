@@ -1,6 +1,7 @@
 <?php
 /*
  * 2021-03-08 : Allow Length Diabled : Todsaporn S.
+ * 2025-08-21 : Add on : Nilawan C.
  * 
  */
 class datastore extends dbc{
@@ -12,6 +13,8 @@ class datastore extends dbc{
 	private $columns = null;
 	private $order = null;
 	private $search = null;
+
+	private $sql = "";
 	
 	private $output = array();
 	
@@ -35,13 +38,19 @@ class datastore extends dbc{
 		}
 		return $this->output;
 	}
+
+	function GetSQL(){
+		return $this->sql;
+	}
 	
 	function Processing(){
 		$sql = $this->getSQLSelect($this->table,$this->dataset);
 		$sql .= $this->getSQLWhere($this->dataset,$this->columns,$this->search);
 		$sql .= $this->getSQLGroup($this->table);
+		$sql .= $this->getSQLHaving($this->table);
 		$sql .= $this->getSQLOrder($this->dataset,$this->columns,$this->order);
 		$sql .= $this->getSQLLimit($this->start,$this->length);
+		$this->sql = $sql;
 		$rResult = $this->Query($sql);
 		$rResultFilterTotal = $this->Query("SELECT FOUND_ROWS()");
 		$iFilteredTotal = $this->Fetch($rResultFilterTotal)[0];
@@ -62,6 +71,7 @@ class datastore extends dbc{
 		
 		$this->output = $output;
 	}
+
 	
 	function getSQLSelect($table,$columns){
 		$sql = "";
@@ -95,6 +105,19 @@ class datastore extends dbc{
 				}else{
 					$sql .= $join['table'].".".$join['with'];
 				}
+                if(isset($join['addon'])){
+                    $sql .= " ".$join['addon']." ";
+                }
+				if(isset($join['subjoin'])){
+					foreach($join['subjoin'] as $subJoin){
+						$sql .= " LEFT JOIN ";
+						$sql .= $subJoin['table'];
+						$sql .= " ON ";
+						$sql .= $join['table'].".".$subJoin['field'];
+						$sql .= " = ";
+						$sql .= $subJoin['table'].".".$subJoin['with'];
+					}
+				}
 			}
 		}
 		return $sql;
@@ -105,6 +128,16 @@ class datastore extends dbc{
 		if(isset($table['groupby'])){
 			$sql .= " GROUP BY ".$table['groupby'];
 		}
+		
+		return $sql;
+	}
+
+	function getSQLHaving($table){
+		$sql = "";
+		if(isset($table['having'])){
+			$sql .= " HAVING ".$table['having'];
+		}
+		
 		return $sql;
 	}
 	

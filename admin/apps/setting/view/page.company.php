@@ -52,6 +52,20 @@
 		),"hr",
 		array(
 			array(
+				"type" => "comboboxdb",
+				"name" => "regsiter_default_group",
+				"flex" => 4,
+				"source" => array(
+					"table" => "os_groups",
+					"value" => "id",
+					"name" => "name"
+				),
+				"caption" => "Default Group for Register",
+				"value" => $os->load_variable("regsiter_default_group","number")
+			)
+		),"hr",
+		array(
+			array(
 				"flex" => 4,
 				"caption"=>"Photo Box",
 				"name" => "aExampleImgs",

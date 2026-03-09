@@ -23,10 +23,6 @@ body,
 	cursor:pointer;
 }
 
-.move-node{
-	cursor:move;
-}
-
 .arrow{
 	cursor:default;
 }
@@ -48,14 +44,35 @@ div.dataTables_wrapper div.dataTables_filter input{
 }
 
 
-/* 1. ซ่อนปุ่มไว้เป็นค่าเริ่มต้น */
-.btn-in-row {
-  opacity: 0;
-  transition: opacity 0.2s; /* เพิ่มความสมูทเวลาแสดงผล */
-}
-	
-/* 2. เมื่อเอาเมาส์ไปวางที่แถว (tr) ให้ปุ่มที่อยู่ในแถวนั้นแสดงออกมา */
-tr:hover .btn-in-row {
-  opacity: 1;
+
+
+
+/* Force desktop to behave like < 991.98px when body has .sidebar-nobar */
+body.sidebar-nobar .sidebar {
+	transform: translate3d(-235px, 0, 0) !important;
 }
 
+body.sidebar-nobar .main {
+	margin-left: 0 !important;
+}
+
+body.sidebar-nobar.sidebar-expand {
+	overflow: hidden !important;
+}
+
+body.sidebar-nobar.sidebar-expand .sidebar {
+	transform: translate3d(0, 0, 0) !important;
+	border-right: 0 !important;
+}
+
+body.sidebar-nobar.sidebar-expand .sidebar-header [data-toggle="sidebar"] {
+	display: flex !important;
+}
+
+body.sidebar-nobar.sidebar-expand .sidebar-backdrop {
+	display: block !important;
+	-webkit-animation-name: fadeIn;
+	animation-name: fadeIn;
+	-webkit-animation-duration: .5s;
+	animation-duration: .5s;
+}

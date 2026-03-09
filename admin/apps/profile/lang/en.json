@@ -4,6 +4,11 @@
 			"home" : "Home",
 			"profile" : "Profile"
 		},
-		"header" : "Profile Setting"
+		"header" : "Profile Setting",
+		"information" : "Information",
+		"message" : "Message",
+		"activity" : "Activity",
+		"setting" : "Setting"
 	}
+	
 }

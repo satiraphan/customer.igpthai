@@ -54,7 +54,7 @@ class concurrent{
 	
 	
 	
-	/*
+	
 	function create(){
 		global $_SESSION;
 		$session_id = session_id();
@@ -76,7 +76,7 @@ class concurrent{
 			"updated" => time()
 		);
 	}
-	*/
+	
 	function update(){
 		global $_SESSION;
 		$session_id = session_id();
@@ -103,7 +103,7 @@ class concurrent{
 			"#login" => "NULL",
 			"#connected" => "NULL"
 		);
-		$this->dbc->Update("os_concurrents",$data,"connected < DATE_SUB(NOW(),INTERVAL 5 SECOND)");
+		$this->dbc->Update("os_concurrents",$data,"connected < DATE_SUB(NOW(),INTERVAL 10 SECOND)");
 		
 		$line = $dbc->GetRecord("os_concurrents","COUNT(id)","status = 0");
 		if($line[0] == 0){
@@ -115,9 +115,9 @@ class concurrent{
 	}
 	
 	function allocate(){
-		global $_SESSION;
 		$dbc = $this->dbc;
-		$line = $dbc->GetRecord("os_concurrents","token","status = 0 LIMIT 0,1");
+		// ระบบจะทำการจอง Concurrent ที่ว่างอยู่ 1 ตัว แต่ยังไม่ถูกใช้งาน เพราะ status = 0
+		$line = $dbc->GetRecord("os_concurrents","id,token,status","status = 0 LIMIT 0,1");
 		return $line['token'];
 	}
 	

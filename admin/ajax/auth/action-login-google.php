@@ -11,57 +11,66 @@
 	$dbc = new dbc;
 	$dbc->Connect();
 	$concurrent = new concurrent($dbc);
-	
-	// Handle new Google Sign-In with JWT credential
-	if(isset($_POST['credential'])) {
-		// Verify Google token
-		require_once '../../vendor/autoload.php';
+
+	if (isset($_POST['credential'])) {
+		$id_token = $_POST['credential'];
+
+		// 1. Verify Token โดยส่งไปที่ Google Endpoint (ใช้ cURL แทน file_get_contents)
+		$verify_url = "https://oauth2.googleapis.com/tokeninfo?id_token=" . $id_token;
 		
-		$client = new Google_Client(['client_id' => GOOGLE_CLIENT_ID]);
-		try {
-			$payload = $client->verifyIdToken($_POST['credential']);
-			if ($payload) {
-				$google_id = $payload['sub'];
-				$email = $payload['email'];
-				$name = $payload['name'];
+		// ใช้ cURL เพราะ allow_url_fopen อาจถูก disable บน server
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $verify_url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		
+		$payload = json_decode($response, true);
+
+		// ตรวจสอบความถูกต้องของ Payload และ Audience (Client ID)
+		if ($payload && isset($payload['sub']) && $payload['aud'] === GOOGLE_CLIENT_ID) {
+
+			$google_id = $payload['sub'];
+			$email = $payload['email'];
+			$name = $payload['name'];
+
+			// 2. ค้นหาข้อมูลใน Database
+			// ใช้ = แทน LIKE เพื่อความแม่นยำและ Performance (เพราะ Google ID เป็นเลขตายตัว)
+
+			if ($dbc->hasRecord("os_user_auth","provider = 'google' AND auth_id = '".$dbc->Escape_String($google_id)."'")) {
+				$auth = $dbc->GetRecord("os_user_auth","*","provider = 'google' AND auth_id = '".$dbc->Escape_String($google_id)."'");
 				
-				// Check if user exists
-				if($dbc->HasRecord("os_contacts","google LIKE '".$google_id."'")){
-					$contact = $dbc->GetRecord("os_contacts","id","google LIKE '".$google_id."'");
-					$user = $dbc->GetRecord("os_users","*","contact = ".$contact['id']);
-					echo $concurrent->login($user['id']);
+				if ($auth) {
+					// ทำการ Login
+					if($concurrent->allow()){
+						echo json_encode($concurrent->login($auth['user_id']));
+					}else{
+						echo json_encode(array(
+							"success" => false,
+							"msg" => "Concurrent is Limited!"
+						));
+					}
 				} else {
-					// Auto-register new user (optional)
-					echo json_encode(array(
-						"success" => false,
-						"msg" => "User not found. Please register first or contact administrator.",
-						"google_id" => $google_id,
-						"email" => $email
-					));
+					echo json_encode(["success" => false, "msg" => "User record not found for this contact."]);
 				}
 			} else {
-				echo json_encode(array("success" => false, "msg" => "Invalid Google token"));
+				// ไม่พบ User (Registration Flow)
+				echo json_encode([
+					"success" => false,
+					"action" => "register",
+					"msg" => "Account not linked. Please contact admin.",
+					"google_id" => $google_id,
+					"email" => $email,
+					"name" => $name
+				]);
 			}
-		} catch (Exception $e) {
-			echo json_encode(array("success" => false, "msg" => "Google verification failed: " . $e->getMessage()));
-		}
-	}
-	// Handle legacy Google Sign-In
-	else if(isset($_POST['google_id'])) {
-		$google_id = $_POST['google_id'];
-		
-		if($dbc->HasRecord("os_contacts","google LIKE '".$google_id."'")){
-			$contact = $dbc->GetRecord("os_contacts","id","google LIKE '".$google_id."'");
-			$user = $dbc->GetRecord("os_users","*","contact = ".$contact['id']);
-			echo $concurrent->login($user['id']);
-		}else{
-			echo json_encode(array(
-				"success" => false,
-				"msg" => "User not found!"
-			));
+		} else {
+			echo json_encode(["success" => false, "msg" => "Invalid Google Token or Client ID mismatch"]);
 		}
 	} else {
-		echo json_encode(array("success" => false, "msg" => "Invalid request"));
+		echo json_encode(["success" => false, "msg" => "Missing credential"]);
 	}
 	
 	$dbc->Close();

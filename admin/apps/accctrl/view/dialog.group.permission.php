@@ -23,7 +23,20 @@
 			array("remove","Remove"),
 			array("approve","Approve")
 		);
-		
+
+
+		/*
+	{
+		"appname" : "dashboard",
+		"name" : {
+			"en" : "Dashboard",
+			"th" : "หน้าแรก"
+		},
+		"icon_type" : "feather",
+		"icon" : "trello",
+		"path" : "apps/dashboard/index.php"
+	}
+		*/
 		function body(){
 			$dbc = $this->dbc;
 			$aApplication = json_decode(file_get_contents("../../menu.json"),true);
@@ -32,12 +45,18 @@
 			$apps = array();
 			foreach($aApplication as $menu){
 				if(!in_array($menu['appname'],$apps)){
-					array_push($apps,$menu['appname']);
+					array_push($apps,array(
+						"appname"=>$menu['appname'],
+						"name"=> is_array($menu['name']) ? $menu['name']['en'] : $menu['name']
+					));
 				}
 				if(isset($menu['submenu'])){
 					foreach($menu['submenu'] as $submenu){
 						if(!in_array($submenu['appname'],$apps)){
-							array_push($apps,$submenu['appname']);
+							array_push($apps,array(
+								"appname"=>$submenu['appname'],
+								"name"=> is_array($submenu['name']) ? $submenu['name']['en'] : $submenu['name']
+							));
 						}
 					}
 				}
@@ -61,13 +80,13 @@
 				<?php
 				foreach($apps as $app){
 					echo '<tr>';
-						echo '<td class="checkrow pointer">'.$app.'</td>';
+						echo '<td class="checkrow pointer">'.$app['name'].'</td>';
 						foreach($this->ctrlitems as $ctrl){
-							$name = $app."_".$ctrl[0];
-							$granted = $dbc->hasRecord("os_permissions","name='$app' AND action='".$ctrl[0]."' AND gid=".$group['id']);
+							$name = $app['appname']."_".$ctrl[0];
+							$granted = $dbc->hasRecord("os_permissions","name='".$app['appname']."' AND action='".$ctrl[0]."' AND gid=".$group['id']);
 							echo '<td>';
 								echo '<div class="custom-control custom-checkbox">';
-									echo '<input type="checkbox" class="custom-control-input" id="'.$name.'" name="permission['.$app.']['.$ctrl[0].']"'.($granted?" checked":"").'>';
+									echo '<input type="checkbox" class="custom-control-input" id="'.$name.'" name="permission['.$app['appname'].']['.$ctrl[0].']"'.($granted?" checked":"").'>';
 									echo '<label class="custom-control-label" for="'.$name.'"></label>';
 								echo '</div>';
 							echo '</td>';

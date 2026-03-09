@@ -4,12 +4,13 @@
 	$no_friend = $this->dbc->GetCount("os_users","gid=". $this->auth['gid']);
 	$no_user = $this->dbc->GetCount("os_users");
 ?>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <div class="row gutters-sm">
 	<div class="col-md-4 mb-3">
 		<div class="card">
 			<div class="card-body">
 				<div class="d-flex flex-column align-items-center text-center">
-					<img src="<?php echo $this->auth['avatar'];?>" alt="Admin" class="rounded-circle" width="150">
+					<img src="<?php echo $this->auth['avatar'];?>" alt="Admin" class="rounded-circle" width="150" height="150" onerror="this.onerror=null; this.src='img/default/noimage.png';">
 					<div class="mt-3">
 						<h4><?php echo $this->auth['display'];?></h4>
 						<p class="text-secondary mb-1"><?php echo $this->auth['group'];?></p>
@@ -31,6 +32,7 @@
 				<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 					<h6 class="mb-0"><i class="mr-2 icon-inline text-danger" data-feather="instagram"></i>Google</h6>
 					<span class="text-secondary"><?php echo $this->auth['contact']['google'];?></span>
+					<button id="customBtn" class="btn btn-outline-primary">Connect</button>
 				</li>
 				<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 					<h6 class="mb-0"><i class="mr-2 icon-inline text-primary" data-feather="facebook"></i>Facebook</h6>

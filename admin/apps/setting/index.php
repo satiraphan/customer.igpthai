@@ -73,6 +73,8 @@
 			'plugins/select2/js/select2.min.js',
 			'plugins/jquery-ui-1.12.1.custom/jquery-ui.js',
 			'plugins/moment/moment.min.js',
+			'plugins/noty/noty.min.css',
+			'plugins/noty/noty.min.js',
 			'//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css',
 			'//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js'
 	];

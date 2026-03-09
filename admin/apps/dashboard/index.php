@@ -41,6 +41,7 @@
 		switch($panel->getView()){
 			case "view":
 				include "control/controller.view.js";
+				include "control/controller.chart.js";
 				break;
 		}
 		?>

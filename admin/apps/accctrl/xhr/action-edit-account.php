@@ -23,7 +23,7 @@
 		));
 	}else{
 		$data = array(
-			'name' => $_POST['name'],
+			'name' => $_POST['account'],
 			'#updated' => 'NOW()'
 		);
 		

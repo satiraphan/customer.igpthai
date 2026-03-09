@@ -18,6 +18,8 @@
 	$setting['date_format'] = $_POST['date_format'];
 	$setting['time_format'] = $_POST['time_format'];
 
+	isset($_POST['sidebar']) ? $setting['sidebar'] = $_POST['sidebar'] : "default";
+
 	$data = array(
 		"setting" => json_encode($setting),
 		"#updated" => "NOW()"

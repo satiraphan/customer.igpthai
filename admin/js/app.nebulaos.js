@@ -161,6 +161,24 @@ var fn={
 		}
 	},
 	dialog : {
+		infobox : function(msg,func){
+			bootbox.alert({
+				message: msg,
+				callback: func
+			});
+		},
+		warnbox : function(msg,title,func){
+			bootbox.alert({
+				message: '<h5 class="d-flex align-items-center"><i class="material-icons text-danger mr-2 mb-0">warning</i>'+(typeof title == "undefined"?'Warning !':title)+'</h5>'+msg
+				,callback: func
+			});
+		},
+		successbox : function(msg,title,func){
+			bootbox.alert({
+				message: '<h5 class="d-flex align-items-center"><i class="material-icons text-success mr-2 mb-0">check_circle_outline</i>'+(typeof title == "undefined"?'Warning !':title)+'</h5>'+msg
+				,callback: func
+			});
+		},
 		confirmbox : function(title,msg,func){
 			bootbox.confirm({
 				title: '<h3 class="d-flex align-items-center"><i class="material-icons mr-1">report_problem</i>'+title+'</h3>',
@@ -465,16 +483,34 @@ var fn={
 	},
 	login : function(){
 		$.post("ajax/auth/action-login.php",$("#login-form").serialize(),function(response){
-			
 			if(response.success){
-				//console.log(response.token);
+				console.log(response.token);
 				//window.location = "#apps/dashboard/index.php";
 				//fn.navigate("dashboard");
 				if($("#remember").prop("checked")){
-					
 					$.cookie('nebulaos.token', response.session_id,{ expires: 7 });
 				}
 				window.location.reload();
+			}else{
+				//alert(response.msg);
+				fn.notify.warnbox(response.msg);
+				//bootbox.alert(response.msg);
+				//Swal.fire("Access Denied",response.msg,"warning");
+			}
+		},"json");
+		return false;
+	},
+	register : function(){
+		let term = $("#agreeCheck").prop("checked");
+		if(!term){
+			fn.notify.warnbox("You must agree to the Terms and Conditions to proceed.");
+			return false;
+		}
+		$.post("ajax/auth/action-register.php",$("#register-form").serialize(),function(response){
+			if(response.success){
+				fn.dialog.successbox("Complete","Registration successful.",function(){
+					window.location = "?";
+				});
 			}else{
 				//alert(response.msg);
 				fn.notify.warnbox(response.msg);
@@ -513,7 +549,6 @@ var fn={
 					}, 1000);
 				}
 			}
-			
 		});
 	}
 };

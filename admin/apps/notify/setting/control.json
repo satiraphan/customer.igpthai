@@ -1,0 +1,6 @@
+{
+	"name" : "notify",
+	"caption" : "Notification Setting",
+	"view" : "../../apps/notify/setting/view/page.notify.php",
+	"control" : "../../apps/notify/setting/control/controller.notify.js"
+}

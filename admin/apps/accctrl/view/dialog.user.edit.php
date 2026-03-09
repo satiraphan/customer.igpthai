@@ -76,6 +76,7 @@
 				"caption" => "Gender",
 				"value" => $contact['gender']
 			),array(
+				"type" => "date",
 				"name" => "dob",
 				"flex-label" => 1,
 				"flex" => 4,

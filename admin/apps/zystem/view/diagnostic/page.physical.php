@@ -10,7 +10,7 @@
 	echo '<div class="col-6">';
 		echo '<h4>CPU Information</h4>';
 
-		$rs  = shell_exec("lscpu");
+		$rs  = shell_exec("cat /proc/cpuinfo");
 		$rst = explode("\n", $rs ?? '');
 
 		echo '<table class="table table-bordered">';
@@ -42,7 +42,7 @@
 
 	echo '<div class="col-6">';
 		echo '<h4>Memory Info</h4>';
-		$rs = shell_exec("vmstat -s");
+		$rs = shell_exec("cat /proc/meminfo");
 		$rst = explode("\n", $rs ?? '');
 		echo '<table class="table table-bordered">';
 			echo '<thead>';
@@ -70,7 +70,10 @@
 		'dmidecode -t 1',
 		'dmidecode -t 2',
 		'dmidecode -t 3',
-		'dmidecode -t 4'
+		'dmidecode -t 4',
+		'cat /proc/cpuinfo',
+		'nproc',
+		'dmesg | grep -i cpu'
 	);
 echo '<div class="col-12">';
 		echo '<h4>Operations System</h4>';

@@ -15,6 +15,7 @@ var profile = {
 	setquote : fn.noaccess,
 	
 	save_setting : fn.noaccess,
+	save_setting_email : fn.noaccess,
 	
 	change_language : fn.noaccess,
 	mail : {

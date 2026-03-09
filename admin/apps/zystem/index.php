@@ -42,7 +42,9 @@
 			'plugins/select2/css/select2.min.css',
 			'plugins/select2/js/select2.min.js',
 			'plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js',
-			'plugins/moment/moment.min.js'
+			'plugins/moment/moment.min.js',
+			'https://unpkg.com/dropzone@5/dist/min/dropzone.min.js',
+			'https://unpkg.com/dropzone@5/dist/min/dropzone.min.css'
 	];
 	
 	App.loadPlugins(plugins, null).then(() => {
@@ -66,6 +68,9 @@
 				switch($panel->getSection()){
 					case "test":
 						include "control/diagnostic/controller.test.js";
+						break;
+					case "minio":
+						include "control/diagnostic/controller.minio.js";
 						break;
 				}
 				break;

@@ -5,6 +5,8 @@
  * 2021-11-27 : SetFrom to SetForm
  * 2026-06-12 : Fix Vertical Tab Link : Todsaporn S.
  * 2024-06-24 : Add Disabled Option to Combobox and ComboboxDB : Todsaporn S.
+ * 2026-02-05 : Add Multiple Option to Combobox and ComboboxDB : Todsaporn S.
+ * 2026-06-05 : Fix Multiple Option to ComboboxDatabank : Todsaporn S.
  */
  
 	class iface{
@@ -101,7 +103,7 @@
 		
 		function EchoInterface_verticle(){
 			echo '<div class="row gutters-sm">';
-				echo '<div class="col-md-3 d-none d-md-block">';
+				echo '<div class="col-md-2 d-none d-md-block">';
 					echo '<div class="card">';
 						echo '<div class="card-body">';
 							echo '<nav class="nav flex-column nav-pills nav-gap-y-1">';
@@ -117,24 +119,25 @@
 						echo '</div>';
 					echo '</div>';
 				echo '</div>';
-			echo '<div class="col-md-9">';
-				echo '<div class="card">';
-					echo '<div class="card-header border-bottom mb-3 d-flex d-md-none">';
-						echo '<ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">';
-							foreach($this->header_meta as $header){
-								$active = $this->view == $header[0] ? " active" : "";
-								$href = '#/'.$this->app.'/'.$header[0];
-								echo '<li class="nav-item">';
-									echo '<a href="'.$href.'" class="nav-link has-icon'.$active.'">';
-										echo '<i class="'.$header[2].'"></i> '.$header[1];
-									echo '</a>';
-								echo '</li>';
-							}
-						echo '</ul>';
-					echo '</div>';
-					echo '<div class="card-body tab-content">';
-						echo '<div class="tab-pane active" id="'.$this->app.'_'.$this->view.'">';
-							$this->body();
+				echo '<div class="col-md-10">';
+					echo '<div class="card">';
+						echo '<div class="card-header border-bottom mb-3 d-flex d-sm-none">';
+							echo '<ul class="nav nav-tabs card-header-tabs nav-gap-x-1" role="tablist">';
+								foreach($this->header_meta as $header){
+									$active = $this->view == $header[0] ? " active" : "";
+									$href = '#/'.$this->app.'/'.$header[0];
+									echo '<li class="nav-item">';
+										echo '<a href="'.$href.'" class="nav-link has-icon'.$active.'">';
+											echo '<i class="'.$header[2].'"></i> '.$header[1];
+										echo '</a>';
+									echo '</li>';
+								}
+							echo '</ul>';
+						echo '</div>';
+						echo '<div class="card-body tab-content">';
+							echo '<div class="tab-pane active" id="'.$this->app.'_'.$this->view.'">';
+								$this->body();
+							echo '</div>';
 						echo '</div>';
 					echo '</div>';
 				echo '</div>';
@@ -323,8 +326,10 @@
 					break;
 				case "combobox":
 					$disabled = "";if(isset($control['disabled']) && $control['disabled'] == true){$disabled = ' disabled';}
+					$readonly = "";if(isset($control['readonly'])){$readonly = ' readonly="'.$control['readonly'].'"';}
+					$multiple = "";if(isset($control['multiple'])){$multiple = ' multiple="'.$control['multiple'].'"';}
 					
-					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$disabled.'>';
+					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$disabled.$readonly.$multiple.'>';
 					foreach($control['source'] as $item){
 						if(is_array($item)){
 							
@@ -342,7 +347,12 @@
 						
 						$selected = "";
 						if(isset($control['value'])){
-							$selected = $value==$control['value']?" selected":"";
+							if(isset($control['multiple'])){
+								$stack = explode(",",$control['value']);
+								$selected = in_array($value,$stack)?" selected":"";
+							}else{
+								$selected = $control['value']==$value?" selected":"";
+							}
 						}
 						echo '<option value="'.$value.'"'.$selected.'>'.$caption.'</option>';
 					}
@@ -381,9 +391,9 @@
 					break;
 				case "comboboxdatabank":
 					$disabled = "";if(isset($control['disabled']) && $control['disabled'] == true){$disabled = ' disabled';}
-					
 					$readonly = "";if(isset($control['readonly'])){$readonly = ' readonly="'.$control['readonly'].'"';}
-					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$readonly.$disabled.'>';
+					$multiple = "";if(isset($control['multiple'])){$multiple = ' multiple="'.$control['multiple'].'"';}
+					echo '<select name="'.$control['name'].'" class="form-control'.$class.'"'.$readonly.$disabled.$multiple.'>';
 					if(isset($control['default'])){
 						if(is_array($control['default'])){
 							echo '<option value="'.$control['default']['value'].'">'.$control['default']['name'].'</option>';
@@ -397,7 +407,12 @@
 					foreach($manyline as $line){
 						$selected = "";
 						if(isset($control['value'])){
-							$selected = $control['value']==$line?" selected":"";
+							if(isset($control['multiple'])){
+								$stack = explode(",",$control['value']);
+								$selected = in_array($line,$stack)?" selected":"";
+							}else{
+								$selected = $control['value']==$line?" selected":"";
+							}
 						}
 						echo '<option '.$selected.'>'.$line.'</option>';
 					}

@@ -11,63 +11,67 @@
 	$dbc = new dbc;
 	$dbc->Connect();
 	$concurrent = new concurrent($dbc);
-	
-	$facebook_id = isset($_POST['facebook_id']) ? $_POST['facebook_id'] : '';
-	$name = isset($_POST['name']) ? $_POST['name'] : '';
-	$email = isset($_POST['email']) ? $_POST['email'] : '';
-	$access_token = isset($_POST['access_token']) ? $_POST['access_token'] : '';
-	
-	if(empty($facebook_id)) {
-		echo json_encode(array(
-			"success" => false,
-			"msg" => "Invalid Facebook ID"
-		));
-		$dbc->Close();
-		exit;
-	}
-	
-	// Verify Facebook access token (optional but recommended)
-	$verify_url = "https://graph.facebook.com/me?access_token=" . $access_token . "&fields=id,name,email";
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $verify_url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	$response = curl_exec($ch);
-	curl_close($ch);
-	
-	$fb_data = json_decode($response, true);
-	
-	if(isset($fb_data['id']) && $fb_data['id'] == $facebook_id) {
-		// Check if user exists with this Facebook ID
-		if($dbc->HasRecord("os_contacts","facebook LIKE '".$facebook_id."'")){
-			$contact = $dbc->GetRecord("os_contacts","id","facebook LIKE '".$facebook_id."'");
-			$user = $dbc->GetRecord("os_users","*","contact = ".$contact['id']);
-			echo $concurrent->login($user['id']);
-		} else {
-			// Check if email exists
-			if(!empty($email) && $dbc->HasRecord("os_contacts","email LIKE '".$email."'")){
-				// Link Facebook to existing account
-				$contact = $dbc->GetRecord("os_contacts","id","email LIKE '".$email."'");
-				$dbc->UpdateData("os_contacts", array("facebook" => $facebook_id), "id = ".$contact['id']);
+
+	if (isset($_POST['access_token']) && isset($_POST['facebook_id'])) {
+		$facebook_id = $_POST['facebook_id'];
+		$access_token = $_POST['access_token'];
+
+		// 1. Verify Token โดยส่งไปที่ Facebook Graph API (ใช้ cURL แทน file_get_contents)
+		$verify_url = "https://graph.facebook.com/me?access_token=" . urlencode($access_token) . "&fields=id,name,email";
+		
+		// ใช้ cURL เพราะ allow_url_fopen อาจถูก disable บน server
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $verify_url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		
+		$payload = json_decode($response, true);
+
+		// ตรวจสอบความถูกต้องของ Payload และ Facebook ID
+		if ($payload && isset($payload['id']) && $payload['id'] === $facebook_id) {
+
+			$fb_id = $payload['id'];
+			$email = isset($payload['email']) ? $payload['email'] : '';
+			$name = isset($payload['name']) ? $payload['name'] : '';
+
+			// 2. ค้นหาข้อมูลใน Database
+			if ($dbc->hasRecord("os_user_auth","provider = 'facebook' AND auth_id = '".$dbc->Escape_String($fb_id)."'")) {
+
+				$auth = $dbc->GetRecord("os_user_auth","*","provider = 'facebook' AND auth_id = '".$dbc->Escape_String($fb_id)."'");
 				
-				$user = $dbc->GetRecord("os_users","*","contact = ".$contact['id']);
-				echo $concurrent->login($user['id']);
+				if ($auth) {
+					// ทำการ Login
+					if($concurrent->allow()){
+						echo json_encode($concurrent->login($auth['user_id']));
+					}else{
+						echo json_encode(array(
+							"success" => false,
+							"msg" => "Concurrent is Limited!"
+						));
+					}
+				} else {
+					echo json_encode(["success" => false, "msg" => "User record not found for this contact."]);
+				}
 			} else {
-				// Auto-register new user (optional)
-				echo json_encode(array(
+				// ไม่พบ User (Registration Flow)
+				echo json_encode([
 					"success" => false,
-					"msg" => "User not found. Please register first or contact administrator.",
-					"facebook_id" => $facebook_id,
+					"action" => "register",
+					"msg" => "Account not linked. Please contact admin.",
+					'token' => $access_token,
+					"facebook_id" => $fb_id,
 					"email" => $email,
 					"name" => $name
-				));
+				]);
 			}
+		} else {
+			echo json_encode(["success" => false, "msg" => "Invalid Facebook Token or ID mismatch"]);
 		}
 	} else {
-		echo json_encode(array(
-			"success" => false,
-			"msg" => "Invalid Facebook access token"
-		));
+		echo json_encode(["success" => false, "msg" => "Missing credential"]);
 	}
 	
 	$dbc->Close();

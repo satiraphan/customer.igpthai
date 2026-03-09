@@ -7,8 +7,8 @@
 	@ini_set('display_errors',DEBUG_MODE?1:0);
 	date_default_timezone_set(DEFAULT_TIMEZONE);
 	
-	$dbc = new dbc;.0/.,mn bvcxxcghujikop[]\78+6-3+
-	. 
+	$dbc = new dbc;
+	
 	$dbc->Connect();
 	$os = new oceanos($dbc);
 	

@@ -5,7 +5,8 @@
 		array('physical'	,"Physical",	'fa fa-microchip'),
 		array('software'	,"Software",	'fa fa-windows'),
 		array('showall'		,"All Theme",	'fa fa-window'),
-		array('test'		,"TEST",	'fa fa-window')
+		array('minio'		,"MinIO",		'fa fa-server'),
+		array('test'		,"TEST",	'fa fa-question'	),
 	);
 
 ?>

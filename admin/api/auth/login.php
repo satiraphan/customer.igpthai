@@ -3,19 +3,7 @@
  * Unified Authentication API
  * Supports: Password, Google OAuth, Facebook OAuth
  */
-session_start();
-header('Content-Type: application/json');
-
-@ini_set('display_errors', 1);
-include_once "../../config/define.php";
-include_once "../../include/db.php";
-include_once "../../include/concurrent.php";
-
-date_default_timezone_set(DEFAULT_TIMEZONE);
-
-$dbc = new dbc;
-$dbc->Connect();
-$concurrent = new concurrent($dbc);
+s
 
 // Get authentication method
 $auth_method = isset($_POST['auth_method']) ? $_POST['auth_method'] : 'password';

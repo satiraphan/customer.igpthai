@@ -126,6 +126,24 @@ App.loadURL = (url, currentLink, config) => {
 	const container = document.querySelector(config.container)
 	App.startLoading()
 	fetch(App.addTimestamp(url)).then(response => {
+		if (response.status === 401) {
+			const authUrl = response.headers.get('X-Auth-Url')
+			if (authUrl) {
+				App.stopLoading()
+				window.location.assign(authUrl)
+				return
+			}
+			response.json().then(data => {
+				if (data && data.authUrl) {
+					App.stopLoading()
+					window.location.assign(data.authUrl)
+					return
+				}
+				App.stopLoading()
+				container.innerHTML = '<div class="alert alert-danger alert-error-load" role="alert">Authorization required.</div>'
+			})
+			return
+		}
 		response.text().then(text => {
 			// scroll to top
 			if (document.querySelector('.main-navbar') && App.lgUp()) {
@@ -179,8 +197,8 @@ App.updateMenu = currentLink => {
 		i.classList.contains('treeview-toggle') && i.classList.add('show')
 	}
 
-	// for 'md down' devices, close sidebar after link clicked
-	(App.mdDown() && document.body.classList.contains('sidebar-expand')) && document.querySelector('[data-toggle="sidebar"]').click()
+	// for 'md down' devices or 'sidebar-nobar', close sidebar after link clicked
+	((App.mdDown() || document.body.classList.contains('sidebar-nobar')) && document.body.classList.contains('sidebar-expand')) && document.querySelector('[data-toggle="sidebar"]').click()
 }
 
 // Update active menu to Top navigation
@@ -304,7 +322,20 @@ App.ajax = (config) => {
 			// level2 = view parameter
 			if(parts.length > 1 && parts[1] !== '') {
 				const view = parts[1];
-				new_url += "?view=" + view;
+
+				if (view.includes('?')){
+					let parts = view.split('?');
+					let viewName = parts[0];       // สิ่งที่อยู่หน้า ?
+					let queryString = parts[1];    // สิ่งที่อยู่หลัง ?
+					if (viewName !== "") {
+						new_url += "?view=" + viewName + "&" + queryString;
+					} else {
+						new_url += "?" + queryString;
+					}
+				}else{
+					new_url += "?view=" + view;
+				}
+
 				
 				// level3 = id (if number) or section (if string)
 				if(parts.length > 2 && parts[2] !== '') {

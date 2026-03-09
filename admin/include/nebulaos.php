@@ -21,7 +21,7 @@ class nebulaos extends oceanos{
 					echo '<a class="'.$a_class.'" href="#/'.$menu_item['appname'].'/"'.$a_attr.'>';
 					//echo '<a class="'.$a_class.'" href="#'.(isset($menu_item['path'])?$menu_item['path']:"").'"'.$a_attr.'>';
 					$this->menu_load_icon($menu_item);
-					echo $menu_item['name'];
+					echo $this->menu_load_caption($menu_item);
 					echo '</a>';
 					if($has_submenu){
 						echo '<div class="dropdown-menu">';
@@ -29,7 +29,7 @@ class nebulaos extends oceanos{
 							echo '<a class="dropdown-item has-icon" href="#'.(isset($sub_item['path'])?$sub_item['path']:"").'">';
 							$this->menu_load_icon($sub_item);
 							echo '<span class="mr-2"></span>';
-							echo $sub_item['name'];
+							echo $this->menu_load_caption($sub_item);
 							echo '</a>';
 						}
 						echo '</div>';

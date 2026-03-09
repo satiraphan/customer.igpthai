@@ -77,7 +77,15 @@ const App = (() => {
   function toggleSidebar() {
     document.addEventListener('click', e => {
       if (e.target.closest('[data-toggle="sidebar"]')) {
-        lgUp() ? document.body.classList.toggle('sidebar-collapse') : document.body.classList.toggle('sidebar-expand')
+        const bodyClass = document.body.classList
+        if (bodyClass.contains('sidebar-nobar')) {
+          // When sidebar-nobar is present, always use sidebar-expand (like mobile)
+          bodyClass.remove('sidebar-collapse')
+          bodyClass.toggle('sidebar-expand')
+        } else {
+          // Normal behavior: collapse on desktop, expand on mobile
+          lgUp() ? bodyClass.toggle('sidebar-collapse') : bodyClass.toggle('sidebar-expand')
+        }
         document.querySelector('.sidebar-body').scrollTop = 0
         window.dispatchEvent(new Event('resize'))
         e.preventDefault()

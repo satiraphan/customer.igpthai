@@ -68,6 +68,7 @@
 				"name" => "gender",
 				"caption" => "Gender"
 			),array(
+				"type" => "date",
 				"name" => "dob",
 				"flex-label" => 1,
 				"flex" => 4,

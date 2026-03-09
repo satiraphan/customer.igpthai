@@ -39,6 +39,19 @@
 		),
 		array(
 			array(
+				"type" => "combobox",
+				"name" => "sidebar",
+				"caption" => "Sidebar Mode",
+				"source" => array(
+					array("default","Default"),
+					array("topnav","Top Navigation"),
+					array("nobar","Always Hide")
+				),
+				"value" => isset($setting['sidebar']) ? $setting['sidebar'] : "default"
+			)
+		),
+		array(
+			array(
 				"flex"=> 4,
 				"type" => "textbox",
 				"name" => "date_format",

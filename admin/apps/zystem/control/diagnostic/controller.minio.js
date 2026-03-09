@@ -1,0 +1,1 @@
+$("#upload-form").dropzone({ url: "apps/zystem/xhr/diagnostic/action-upload-minio.php" });

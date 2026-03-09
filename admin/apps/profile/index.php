@@ -9,22 +9,22 @@
 	$dbc = new dbc;
 	$dbc->Connect();
 	$os = new oceanos($dbc);
+	$os->initial_lang("lang");
 	$panel = new ipanel($dbc,$os->auth);
 	
 	$panel->setApp("profile","Profile");
 	$panel->setView(isset($_GET['view'])?$_GET['view']:'overview');
 	
 	$panel->setMeta(array(
-		array('overview'	,"Information",	'fa-sharp fa-thin fa-circle-info'),
-		array('message'		,"Message",		'fa-sharp fa-thin fa-circle-envelope'),
-		array('activity'	,"Activity",	'fa-sharp fa-thin fa-square-rss'),
-		array('setting'		,"Setting",		'fa-sharp fa-thin fa-wrench')
+		array('overview'	,$os->tr("main.information"),	'far fa-circle-info'),
+		array('message'		,$os->tr("main.message"),		'far fa-circle-envelope'),
+		array('activity'	,$os->tr("main.activity"),		'far fa-square-rss'),
+		array('setting'		,$os->tr("main.setting"),		'far fa-wrench'),
+		array('email'		,"E-mail",						'far fa-envelope-open-text')
 	));
 	
 	$panel->EchoInterface_verticle();
-	
 ?>
-      
 
       <script>
         var plugins = [
@@ -39,6 +39,7 @@
 			'plugins/select2/css/select2.min.css',
 			'plugins/select2/js/select2.min.js',
 			'plugins/moment/moment.min.js'
+			
         ]
         App.loadPlugins(plugins, null).then(() => {
           autosize(document.querySelectorAll('textarea.autosize'))
@@ -51,6 +52,7 @@
 				include_once "control/controller.profile.quote.js";
 				include "../engine/control/controller.file.upload.js";
 				include_once "control/controller.sendmail.js";
+				include_once "control/controller.auth.js";
 				break;
 			case "message":
 				include_once "control/controller.message.view.js";
@@ -58,6 +60,9 @@
 				//include_once "control/controller.profile.qoute.js";
 				break;
 			case "setting":
+				include_once "control/controller.setting.js";
+				break;
+			case "email":
 				include_once "control/controller.setting.js";
 				break;
 		}
